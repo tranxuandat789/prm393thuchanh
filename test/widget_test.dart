@@ -13,7 +13,7 @@ import 'package:prm393_tranxuandat/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const BookifyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
