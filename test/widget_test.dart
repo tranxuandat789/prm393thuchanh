@@ -1,30 +1,33 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:provider/provider.dart';
 import 'package:prm393_tranxuandat/main.dart';
+import 'package:prm393_tranxuandat/services/book_provider.dart';
+import 'mock_http_client.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const BookifyApp());
+  setUpAll(() {
+    // Kích hoạt giả lập tải ảnh mạng
+    HttpOverrides.global = MockHttpOverrides();
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('BookifyApp khoi tao va hien thi dung tieu de', (WidgetTester tester) async {
+    // Xây dựng widget BookifyApp được bao bọc bởi BookProvider
+    await tester.pumpWidget(
+      ChangeNotifierProvider(
+        create: (_) => BookProvider(),
+        child: const BookifyApp(),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Đợi tất cả animation và microtask kết thúc
+    await tester.pumpAndSettle(const Duration(milliseconds: 100));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Xác thực tiêu đề ứng dụng 'Bookify' hiển thị trên AppBar
+    expect(find.text('Bookify'), findsOneWidget);
+
+    // Xác thực có thanh tìm kiếm với gợi ý tìm kiếm sách
+    expect(find.text('Tìm kiếm tựa sách hoặc tác giả...'), findsOneWidget);
   });
 }
