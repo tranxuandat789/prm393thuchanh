@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prm393_tranxuandat/lab5/lab5.dart';
-import 'mock_http_client.dart';
+import '../mock_http_client.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 5
 void main() {
