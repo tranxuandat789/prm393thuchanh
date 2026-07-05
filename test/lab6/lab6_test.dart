@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prm393_tranxuandat/lab6.dart';
+import 'package:prm393_tranxuandat/lab6/lab6.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 6
 void main() {
