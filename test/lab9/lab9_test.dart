@@ -1,6 +1,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prm393_tranxuandat/lab9.dart';
+import 'package:prm393_tranxuandat/lab9/lab9.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 9
 void main() {
