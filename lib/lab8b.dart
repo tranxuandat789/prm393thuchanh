@@ -39,7 +39,8 @@ class ApiMovie {
   factory ApiMovie.fromJson(Map<String, dynamic> json) {
     // Xử lý làm sạch overview bằng cách xóa các thẻ HTML sinh ra từ API
     String cleanOverview = json['summary'] as String? ?? 'Không có mô tả nào.';
-    cleanOverview = cleanOverview.replaceAll(RegExp(r'<[^>]*>'), ''); // Remove HTML tags
+    cleanOverview =
+        cleanOverview.replaceAll(RegExp(r'<[^>]*>'), ''); // Remove HTML tags
 
     // Lấy ảnh poster chất lượng trung bình
     final imageMap = json['image'] as Map<String, dynamic>?;
@@ -94,7 +95,8 @@ class MovieExplorerHomeScreen extends StatefulWidget {
 
   /// Tạo State quản lý yêu thích phim và tải dữ liệu mạng
   @override
-  State<MovieExplorerHomeScreen> createState() => _MovieExplorerHomeScreenState();
+  State<MovieExplorerHomeScreen> createState() =>
+      _MovieExplorerHomeScreenState();
 }
 
 /// Trạng thái lưu trữ của MovieExplorerHomeScreen
@@ -123,7 +125,9 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
         final List<dynamic> data = jsonDecode(response.body);
         // Lấy 20 bộ phim đầu tiên làm đại diện
         final limitedData = data.take(20).toList();
-        return limitedData.map((item) => ApiMovie.fromJson(item as Map<String, dynamic>)).toList();
+        return limitedData
+            .map((item) => ApiMovie.fromJson(item as Map<String, dynamic>))
+            .toList();
       } else {
         throw Exception('Mã lỗi phản hồi: ${response.statusCode}');
       }
@@ -157,7 +161,8 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
       builder: (context) {
         final isFav = _favoriteMovieIds.contains(movie.id);
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -219,15 +224,19 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                         children: [
                           const Icon(Icons.star, color: Colors.amber, size: 20),
                           const SizedBox(width: 4),
-                          Text('${movie.rating} (TVMaze)', style: const TextStyle(fontWeight: FontWeight.bold)),
+                          Text('${movie.rating} (TVMaze)',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                           const SizedBox(width: 16),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2),
                             decoration: BoxDecoration(
                               color: Colors.grey[800],
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            child: Text(movie.status, style: const TextStyle(fontSize: 12)),
+                            child: Text(movie.status,
+                                style: const TextStyle(fontSize: 12)),
                           ),
                         ],
                       ),
@@ -244,18 +253,22 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                             .toList(),
                       ),
                       const Divider(height: 24),
-                      const Text('Tóm tắt nội dung:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                      const Text('Tóm tắt nội dung:',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
                       const SizedBox(height: 8),
                       Text(
                         movie.overview,
-                        style: const TextStyle(height: 1.4, fontSize: 13, color: Colors.white70),
+                        style: const TextStyle(
+                            height: 1.4, fontSize: 13, color: Colors.white70),
                       ),
                     ],
                   ),
                 ),
                 // Nút hành động ở chân dialog
                 Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                   child: Row(
                     children: [
                       Expanded(
@@ -263,9 +276,12 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                           onPressed: () {
                             _toggleFavorite(movie.id);
                             Navigator.pop(context);
-                            _showMovieDetail(context, movie); // Reopen to update UI
+                            _showMovieDetail(
+                                context, movie); // Reopen to update UI
                           },
-                          icon: Icon(isFav ? Icons.favorite : Icons.favorite_border, color: Colors.red),
+                          icon: Icon(
+                              isFav ? Icons.favorite : Icons.favorite_border,
+                              color: Colors.red),
                           label: Text(isFav ? 'Bỏ yêu thích' : 'Yêu thích'),
                         ),
                       ),
@@ -312,7 +328,8 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                 children: [
                   CircularProgressIndicator(color: Colors.amber),
                   SizedBox(height: 16),
-                  Text('Đang khám phá kho phim...', style: TextStyle(color: Colors.amber)),
+                  Text('Đang khám phá kho phim...',
+                      style: TextStyle(color: Colors.amber)),
                 ],
               ),
             );
@@ -326,11 +343,13 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.signal_wifi_connected_no_internet_4, size: 64, color: Colors.amber),
+                    const Icon(Icons.signal_wifi_connected_no_internet_4,
+                        size: 64, color: Colors.amber),
                     const SizedBox(height: 16),
                     const Text(
                       'Không thể tải dữ liệu phim!',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -407,9 +426,11 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                               child: Image.network(
                                 movie.posterUrl,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => Container(
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Container(
                                   color: Colors.grey[800],
-                                  child: const Icon(Icons.broken_image, size: 40),
+                                  child:
+                                      const Icon(Icons.broken_image, size: 40),
                                 ),
                               ),
                             ),
@@ -420,23 +441,30 @@ class _MovieExplorerHomeScreenState extends State<MovieExplorerHomeScreen> {
                                 children: [
                                   Text(
                                     movie.title,
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   const SizedBox(height: 4),
                                   Row(
                                     children: [
-                                      const Icon(Icons.star, color: Colors.amber, size: 14),
+                                      const Icon(Icons.star,
+                                          color: Colors.amber, size: 14),
                                       const SizedBox(width: 4),
                                       Text(
                                         movie.rating.toString(),
-                                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       const Spacer(),
                                       Text(
                                         movie.language,
-                                        style: TextStyle(fontSize: 11, color: Colors.grey[500]),
+                                        style: TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.grey[500]),
                                       ),
                                     ],
                                   ),

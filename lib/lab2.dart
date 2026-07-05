@@ -9,6 +9,7 @@ void exercise1() {
   print("Student: $isStudent");
   print("Next year age: ${age + 1}");
 }
+
 void exercise2() {
   List<int> numbers = [1, 2, 3, 4];
   print("Original list: $numbers");
@@ -26,10 +27,7 @@ void exercise2() {
   print(result);
   Set<String> fruits = {"Apple", "Banana", "Apple"};
   print("Set values: $fruits");
-  Map<String, int> scores = {
-    "Math": 9,
-    "English": 8
-  };
+  Map<String, int> scores = {"Math": 9, "English": 8};
   print("Math score: ${scores["Math"]}");
 }
 
@@ -75,6 +73,7 @@ void exercise3() {
   print("Add: ${add(3, 4)}");
   print("Multiply: ${multiply(3, 4)}");
 }
+
 class Car {
   String brand;
   Car(this.brand);
@@ -116,14 +115,13 @@ Future<void> exercise5() async {
   name = "Dat";
   print(name!);
   Stream<int> numberStream =
-  Stream.periodic(Duration(seconds: 1), (x) => x).take(5);
+      Stream.periodic(Duration(seconds: 1), (x) => x).take(5);
   await for (int value in numberStream) {
     print("Stream value: $value");
   }
 }
 
 void main() async {
-
   print("===== Exercise 1 =====");
   exercise1();
 

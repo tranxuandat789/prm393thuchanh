@@ -47,7 +47,8 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 /// Trạng thái lưu trữ của MainNavigationScreen
-class _MainNavigationScreenState extends State<MainNavigationScreen> with SingleTickerProviderStateMixin {
+class _MainNavigationScreenState extends State<MainNavigationScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   /// Khởi tạo TabController chứa 3 tabs điều hướng
@@ -120,7 +121,8 @@ class _Lab9_1ScreenState extends State<Lab9_1Screen> {
   /// Hàm bất đồng bộ đọc file json mẫu từ thư mục assets qua rootBundle
   Future<void> _loadJsonFromAssets() async {
     try {
-      final String response = await rootBundle.loadString('assets/sample_data.json');
+      final String response =
+          await rootBundle.loadString('assets/sample_data.json');
       final data = jsonDecode(response);
       setState(() {
         _assetsData = data as List<dynamic>;
@@ -128,7 +130,8 @@ class _Lab9_1ScreenState extends State<Lab9_1Screen> {
       });
     } catch (e) {
       setState(() {
-        _errorMsg = 'Lỗi đọc assets: $e\nĐảm bảo bạn đã khai báo thư mục assets trong pubspec.yaml!';
+        _errorMsg =
+            'Lỗi đọc assets: $e\nĐảm bảo bạn đã khai báo thư mục assets trong pubspec.yaml!';
         _isLoading = false;
       });
     }
@@ -174,7 +177,8 @@ class _Lab9_1ScreenState extends State<Lab9_1Screen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 4),
-                Text('Thể loại: ${item['genre'] ?? "N/A"} | Năm: ${item['year'] ?? "N/A"}'),
+                Text(
+                    'Thể loại: ${item['genre'] ?? "N/A"} | Năm: ${item['year'] ?? "N/A"}'),
                 const SizedBox(height: 4),
                 Text(
                   item['description']?.toString() ?? '',
@@ -221,13 +225,22 @@ class _Lab9_2ScreenState extends State<Lab9_2Screen> {
     try {
       final file = await _getLocalFile();
       final sampleData = [
-        {'id': 101, 'title': 'Lưu trữ cục bộ 1', 'date': DateTime.now().toIso8601String()},
-        {'id': 102, 'title': 'Lưu trữ cục bộ 2', 'date': DateTime.now().toIso8601String()},
+        {
+          'id': 101,
+          'title': 'Lưu trữ cục bộ 1',
+          'date': DateTime.now().toIso8601String()
+        },
+        {
+          'id': 102,
+          'title': 'Lưu trữ cục bộ 2',
+          'date': DateTime.now().toIso8601String()
+        },
       ];
       await file.writeAsString(jsonEncode(sampleData));
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã lưu dữ liệu vào Local File thành công!')),
+        const SnackBar(
+            content: Text('Đã lưu dữ liệu vào Local File thành công!')),
       );
     } catch (e) {
       if (!mounted) return;
@@ -246,14 +259,16 @@ class _Lab9_2ScreenState extends State<Lab9_2Screen> {
       if (await file.exists()) {
         final content = await file.readAsString();
         final parsedJson = jsonDecode(content);
-        final prettyString = const JsonEncoder.withIndent('  ').convert(parsedJson);
+        final prettyString =
+            const JsonEncoder.withIndent('  ').convert(parsedJson);
 
         setState(() {
           _fileContent = prettyString;
         });
       } else {
         setState(() {
-          _fileContent = 'File cục bộ không tồn tại! Vui lòng nhấn nút Lưu trước.';
+          _fileContent =
+              'File cục bộ không tồn tại! Vui lòng nhấn nút Lưu trước.';
         });
       }
     } catch (e) {
@@ -307,7 +322,10 @@ class _Lab9_2ScreenState extends State<Lab9_2Screen> {
               child: SingleChildScrollView(
                 child: Text(
                   _fileContent,
-                  style: const TextStyle(fontFamily: 'monospace', fontSize: 13, color: Colors.black87),
+                  style: const TextStyle(
+                      fontFamily: 'monospace',
+                      fontSize: 13,
+                      color: Colors.black87),
                 ),
               ),
             ),
@@ -367,7 +385,8 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
         });
       } else {
         // Tải dự phòng dữ liệu mẫu từ Assets làm điểm bắt đầu
-        final String response = await rootBundle.loadString('assets/sample_data.json');
+        final String response =
+            await rootBundle.loadString('assets/sample_data.json');
         final List<dynamic> parsed = jsonDecode(response);
         setState(() {
           _crudItems = List<Map<String, dynamic>>.from(parsed);
@@ -415,9 +434,11 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
   }
 
   /// Hàm cập nhật chỉnh sửa một bộ phim đã tồn tại và kích hoạt Auto-save
-  void _editItem(String id, String title, String genre, String year, String description) {
+  void _editItem(
+      String id, String title, String genre, String year, String description) {
     setState(() {
-      final index = _crudItems.indexWhere((item) => item['id'].toString() == id);
+      final index =
+          _crudItems.indexWhere((item) => item['id'].toString() == id);
       if (index != -1) {
         _crudItems[index] = {
           'id': id,
@@ -443,17 +464,24 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
   List<Map<String, dynamic>> get _filteredItems {
     if (_searchQuery.trim().isEmpty) return _crudItems;
     return _crudItems.where((item) {
-      return item['title'].toString().toLowerCase().contains(_searchQuery.toLowerCase());
+      return item['title']
+          .toString()
+          .toLowerCase()
+          .contains(_searchQuery.toLowerCase());
     }).toList();
   }
 
   /// Hàm mở Dialog nhập liệu phục vụ cả Thêm mới và Chỉnh sửa bộ phim
   void _openItemDialog({Map<String, dynamic>? item}) {
     final isEdit = item != null;
-    final titleController = TextEditingController(text: isEdit ? item['title'] : '');
-    final genreController = TextEditingController(text: isEdit ? item['genre'] : '');
-    final yearController = TextEditingController(text: isEdit ? item['year'] : '');
-    final descController = TextEditingController(text: isEdit ? item['description'] : '');
+    final titleController =
+        TextEditingController(text: isEdit ? item['title'] : '');
+    final genreController =
+        TextEditingController(text: isEdit ? item['genre'] : '');
+    final yearController =
+        TextEditingController(text: isEdit ? item['year'] : '');
+    final descController =
+        TextEditingController(text: isEdit ? item['description'] : '');
 
     showDialog(
       context: context,
@@ -466,21 +494,25 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
               children: [
                 TextField(
                   controller: titleController,
-                  decoration: const InputDecoration(labelText: 'Tên phim (*)', isDense: true),
+                  decoration: const InputDecoration(
+                      labelText: 'Tên phim (*)', isDense: true),
                 ),
                 TextField(
                   controller: genreController,
-                  decoration: const InputDecoration(labelText: 'Thể loại', isDense: true),
+                  decoration: const InputDecoration(
+                      labelText: 'Thể loại', isDense: true),
                 ),
                 TextField(
                   controller: yearController,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(labelText: 'Năm sản xuất', isDense: true),
+                  decoration: const InputDecoration(
+                      labelText: 'Năm sản xuất', isDense: true),
                 ),
                 TextField(
                   controller: descController,
                   maxLines: 2,
-                  decoration: const InputDecoration(labelText: 'Mô tả tóm tắt', isDense: true),
+                  decoration: const InputDecoration(
+                      labelText: 'Mô tả tóm tắt', isDense: true),
                 ),
               ],
             ),
@@ -545,7 +577,8 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                     decoration: InputDecoration(
                       hintText: 'Tìm kiếm theo tên phim...',
                       prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12)),
                       isDense: true,
                       contentPadding: const EdgeInsets.all(10),
                     ),
@@ -564,7 +597,8 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                       children: [
                         Icon(Icons.autorenew, color: Colors.teal, size: 18),
                         SizedBox(width: 4),
-                        Text('Auto-saving...', style: TextStyle(fontSize: 12, color: Colors.teal)),
+                        Text('Auto-saving...',
+                            style: TextStyle(fontSize: 12, color: Colors.teal)),
                       ],
                     ),
                   ),
@@ -572,13 +606,17 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Row(
                       children: [
-                        Icon(Icons.check_circle_outline, color: Colors.grey, size: 18),
+                        Icon(Icons.check_circle_outline,
+                            color: Colors.grey, size: 18),
                         SizedBox(width: 4),
-                        Text('Saved', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                        Text('Saved',
+                            style: TextStyle(fontSize: 12, color: Colors.grey)),
                       ],
                     ),
                   ),
-                  crossFadeState: _isAutoSaving ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                  crossFadeState: _isAutoSaving
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
                   duration: const Duration(milliseconds: 200),
                 )
               ],
@@ -590,7 +628,8 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.find_in_page_outlined, size: 48, color: Colors.grey[400]),
+                          Icon(Icons.find_in_page_outlined,
+                              size: 48, color: Colors.grey[400]),
                           const SizedBox(height: 12),
                           const Text('Không tìm thấy bản ghi nào.'),
                         ],
@@ -605,7 +644,8 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                           child: ListTile(
                             title: Text(
                               item['title']?.toString() ?? '',
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
                               'Thể loại: ${item['genre'] ?? "N/A"} | Năm: ${item['year'] ?? "N/A"}',
@@ -614,12 +654,15 @@ class _Lab9_3ScreenState extends State<Lab9_3Screen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.edit, color: Colors.blue),
+                                  icon: const Icon(Icons.edit,
+                                      color: Colors.blue),
                                   onPressed: () => _openItemDialog(item: item),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.delete, color: Colors.red),
-                                  onPressed: () => _deleteItem(item['id'].toString()),
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () =>
+                                      _deleteItem(item['id'].toString()),
                                 ),
                               ],
                             ),

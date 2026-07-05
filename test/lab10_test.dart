@@ -18,7 +18,8 @@ void main() {
   });
 
   /// Test kiểm tra xem Lab 10 App có khởi tạo bình thường và hiển thị đầy đủ menu các tính năng tích hợp hay không
-  testWidgets('Lab 10 App khoi tao va hien thi menu cac tinh nang', (WidgetTester tester) async {
+  testWidgets('Lab 10 App khoi tao va hien thi menu cac tinh nang',
+      (WidgetTester tester) async {
     // 1. Build widget Lab10App
     await tester.pumpWidget(const Lab10App());
 

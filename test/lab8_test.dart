@@ -18,7 +18,8 @@ void main() {
   });
 
   /// Test kiểm tra xem Lab 8 App có khởi tạo bình thường và hiển thị đúng tiêu đề cùng trạng thái Loading ban đầu hay không
-  testWidgets('Lab 8 App khoi tao va hien thi tieu de kem trang thai loading', (WidgetTester tester) async {
+  testWidgets('Lab 8 App khoi tao va hien thi tieu de kem trang thai loading',
+      (WidgetTester tester) async {
     // 1. Build widget Lab8App
     await tester.pumpWidget(const Lab8App());
 

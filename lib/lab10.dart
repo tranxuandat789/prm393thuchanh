@@ -19,7 +19,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // Khởi tạo global instance cho Local Notifications
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 /// Hàm bất đồng bộ thiết lập cấu hình khởi tạo của hệ thống thông báo Local Notification
 Future<void> initNotifications() async {
@@ -42,8 +43,10 @@ Future<void> initNotifications() async {
 }
 
 /// Hàm bất đồng bộ gọi hiển thị một thông báo hệ thống lập tức với tiêu đề và nội dung được chọn
-Future<void> showNotification({required String title, required String body}) async {
-  const AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
+Future<void> showNotification(
+    {required String title, required String body}) async {
+  const AndroidNotificationDetails androidNotificationDetails =
+      AndroidNotificationDetails(
     'lab10_channel_id',
     'Lab 10 Channel',
     channelDescription: 'Kênh thông báo cho Lab 10',
@@ -186,7 +189,8 @@ class Lab10MenuScreen extends StatelessWidget {
         'subtitle': 'Tích hợp đầy đủ luồng Xác thực & Thông báo',
         'icon': Icons.integration_instructions_outlined,
         'color': Colors.indigo,
-        'widget': FullIntegrationScreen(firebaseInitialized: firebaseInitialized),
+        'widget':
+            FullIntegrationScreen(firebaseInitialized: firebaseInitialized),
       },
     ];
 
@@ -203,7 +207,8 @@ class Lab10MenuScreen extends StatelessWidget {
           return Card(
             margin: const EdgeInsets.only(bottom: 12),
             elevation: 3,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: ListTile(
               leading: Container(
                 padding: const EdgeInsets.all(8),
@@ -211,15 +216,18 @@ class Lab10MenuScreen extends StatelessWidget {
                   color: (item['color'] as Color).withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(item['icon'] as IconData, color: item['color'] as Color),
+                child: Icon(item['icon'] as IconData,
+                    color: item['color'] as Color),
               ),
-              title: Text(item['title'] as String, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(item['title'] as String,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text(item['subtitle'] as String),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => item['widget'] as Widget),
+                  MaterialPageRoute(
+                      builder: (context) => item['widget'] as Widget),
                 );
               },
             ),
@@ -269,7 +277,8 @@ class _MockLoginScreenState extends State<MockLoginScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const DummyHomeScreen(title: 'Mock Home', userEmail: 'mock_user@example.com'),
+            builder: (context) => const DummyHomeScreen(
+                title: 'Mock Home', userEmail: 'mock_user@example.com'),
           ),
         );
       }
@@ -289,28 +298,41 @@ class _MockLoginScreenState extends State<MockLoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Icon(Icons.lock_person_outlined, size: 64, color: Colors.blue),
+                const Icon(Icons.lock_person_outlined,
+                    size: 64, color: Colors.blue),
                 const SizedBox(height: 16),
-                const Text('Đăng nhập giả lập', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('Đăng nhập giả lập',
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 24),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
-                  validator: (val) => (val == null || !val.contains('@')) ? 'Email không hợp lệ' : null,
+                  decoration: const InputDecoration(
+                      labelText: 'Email', border: OutlineInputBorder()),
+                  validator: (val) => (val == null || !val.contains('@'))
+                      ? 'Email không hợp lệ'
+                      : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(labelText: 'Mật khẩu', border: OutlineInputBorder()),
-                  validator: (val) => (val == null || val.length < 6) ? 'Mật khẩu tối thiểu 6 ký tự' : null,
+                  decoration: const InputDecoration(
+                      labelText: 'Mật khẩu', border: OutlineInputBorder()),
+                  validator: (val) => (val == null || val.length < 6)
+                      ? 'Mật khẩu tối thiểu 6 ký tự'
+                      : null,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: _isLoading ? null : _handleMockLogin,
-                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 14)),
-                  child: _isLoading ? const CircularProgressIndicator() : const Text('Đăng Nhập'),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14)),
+                  child: _isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text('Đăng Nhập'),
                 ),
               ],
             ),
@@ -371,16 +393,21 @@ class _RealApiLoginScreenState extends State<RealApiLoginScreen> {
           final firstName = data['firstName'] as String? ?? 'User';
 
           // Gửi thông báo hệ thống chào mừng
-          showNotification(title: 'Đăng nhập thành công!', body: 'Chào mừng trở lại, $firstName');
+          showNotification(
+              title: 'Đăng nhập thành công!',
+              body: 'Chào mừng trở lại, $firstName');
 
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => DummyHomeScreen(title: 'API Home - Chào $firstName', userEmail: 'Token: ${token.substring(0, 10)}...'),
+              builder: (context) => DummyHomeScreen(
+                  title: 'API Home - Chào $firstName',
+                  userEmail: 'Token: ${token.substring(0, 10)}...'),
             ),
           );
         } else {
-          final errorMsg = jsonDecode(response.body)['message'] ?? 'Sai tài khoản hoặc mật khẩu!';
+          final errorMsg = jsonDecode(response.body)['message'] ??
+              'Sai tài khoản hoặc mật khẩu!';
           _showErrorDialog(errorMsg);
         }
       } catch (e) {
@@ -399,7 +426,9 @@ class _RealApiLoginScreenState extends State<RealApiLoginScreen> {
         title: const Text('Lỗi Đăng Nhập'),
         content: Text(msg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Đồng ý')),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Đồng ý')),
         ],
       ),
     );
@@ -428,21 +457,28 @@ class _RealApiLoginScreenState extends State<RealApiLoginScreen> {
                 const SizedBox(height: 24),
                 TextFormField(
                   controller: _usernameController,
-                  decoration: const InputDecoration(labelText: 'Username', border: OutlineInputBorder()),
-                  validator: (val) => (val == null || val.isEmpty) ? 'Nhập username' : null,
+                  decoration: const InputDecoration(
+                      labelText: 'Username', border: OutlineInputBorder()),
+                  validator: (val) =>
+                      (val == null || val.isEmpty) ? 'Nhập username' : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
-                  validator: (val) => (val == null || val.isEmpty) ? 'Nhập password' : null,
+                  decoration: const InputDecoration(
+                      labelText: 'Password', border: OutlineInputBorder()),
+                  validator: (val) =>
+                      (val == null || val.isEmpty) ? 'Nhập password' : null,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: _isLoading ? null : _handleRealLogin,
-                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 14)),
-                  child: _isLoading ? const CircularProgressIndicator() : const Text('Đăng nhập API'),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14)),
+                  child: _isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text('Đăng nhập API'),
                 ),
               ],
             ),
@@ -492,7 +528,8 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
   Future<void> _checkSavedSession() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
-    await Future.delayed(const Duration(seconds: 1)); // Delay tạo hiệu ứng kiểm tra
+    await Future.delayed(
+        const Duration(seconds: 1)); // Delay tạo hiệu ứng kiểm tra
     if (mounted) {
       setState(() {
         _savedToken = token;
@@ -523,18 +560,22 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
         await prefs.setString('auth_token', token);
         await prefs.setString('auth_name', data['firstName'] ?? 'User');
 
-        showNotification(title: 'Tự động đăng nhập đã bật', body: 'Lần tới bạn không cần nhập mật khẩu nữa.');
+        showNotification(
+            title: 'Tự động đăng nhập đã bật',
+            body: 'Lần tới bạn không cần nhập mật khẩu nữa.');
 
         setState(() {
           _savedToken = token;
         });
       } else {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Đăng nhập thất bại!')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Đăng nhập thất bại!')));
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi kết nối: $e')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Lỗi kết nối: $e')));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -577,11 +618,16 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.check_circle, color: Colors.green, size: 72),
+                    const Icon(Icons.check_circle,
+                        color: Colors.green, size: 72),
                     const SizedBox(height: 16),
-                    const Text('Phiên Đăng Nhập Được Bảo Lưu!', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Text('Phiên Đăng Nhập Được Bảo Lưu!',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8),
-                    Text('Token: ${_savedToken!.substring(0, 15)}...', textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey)),
+                    Text('Token: ${_savedToken!.substring(0, 15)}...',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: Colors.grey)),
                     const SizedBox(height: 32),
                     ElevatedButton.icon(
                       onPressed: _handleLogout,
@@ -597,25 +643,33 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    const Icon(Icons.history_toggle_off, size: 64, color: Colors.orange),
+                    const Icon(Icons.history_toggle_off,
+                        size: 64, color: Colors.orange),
                     const SizedBox(height: 16),
-                    const Text('Chưa có phiên làm việc. Hãy đăng nhập để lưu cấu hình.', textAlign: TextAlign.center),
+                    const Text(
+                        'Chưa có phiên làm việc. Hãy đăng nhập để lưu cấu hình.',
+                        textAlign: TextAlign.center),
                     const SizedBox(height: 24),
                     TextField(
                       controller: _usernameController,
-                      decoration: const InputDecoration(labelText: 'Username', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(
+                          labelText: 'Username', border: OutlineInputBorder()),
                     ),
                     const SizedBox(height: 16),
                     TextField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(
+                          labelText: 'Password', border: OutlineInputBorder()),
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: _isLoading ? null : _loginAndSave,
-                      style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(48)),
-                      child: _isLoading ? const CircularProgressIndicator() : const Text('Đăng nhập & Ghi nhớ phiên'),
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(48)),
+                      child: _isLoading
+                          ? const CircularProgressIndicator()
+                          : const Text('Đăng nhập & Ghi nhớ phiên'),
                     )
                   ],
                 ),
@@ -665,13 +719,15 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
 
-        final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+        final UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithCredential(credential);
         setState(() {
           _currentUser = userCredential.user;
         });
@@ -682,7 +738,8 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
         );
       }
     } catch (e) {
-      _showErrorDialog("Lỗi xác thực Google: $e\nLưu ý: Tính năng này yêu cầu cấu hình Firebase gốc (Android/iOS) và SHA-1 key.");
+      _showErrorDialog(
+          "Lỗi xác thực Google: $e\nLưu ý: Tính năng này yêu cầu cấu hình Firebase gốc (Android/iOS) và SHA-1 key.");
     } finally {
       setState(() => _isLoading = false);
     }
@@ -710,16 +767,19 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Tính năng Đăng nhập Google sử dụng Firebase thực tế yêu cầu bạn cấu hình nền tảng gốc. Các bước thực hiện:'),
+              Text(
+                  'Tính năng Đăng nhập Google sử dụng Firebase thực tế yêu cầu bạn cấu hình nền tảng gốc. Các bước thực hiện:'),
               SizedBox(height: 12),
               Text('1. Cài đặt FlutterFire CLI trên máy tính.'),
               Text('2. Chạy lệnh: "flutterfire configure" tại thư mục dự án.'),
-              Text('3. Đăng ký Web client ID và tải file google-services.json vào thư mục android/app/.'),
+              Text(
+                  '3. Đăng ký Web client ID và tải file google-services.json vào thư mục android/app/.'),
               Text('4. Tải file GoogleService-Info.plist cho iOS.'),
               SizedBox(height: 12),
               Text(
                 'Lưu ý an toàn: Mã nguồn Dart của Lab đã được viết đầy đủ & sẵn sàng biên dịch thành công.',
-                style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.orange, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -733,12 +793,16 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                 _currentUser = FirebaseAuth.instance.currentUser;
               });
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Đang hiển thị chế độ giả lập giao diện Profile')),
+                const SnackBar(
+                    content:
+                        Text('Đang hiển thị chế độ giả lập giao diện Profile')),
               );
             },
             child: const Text('Xem giao diện Demo'),
           ),
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Đã hiểu')),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Đã hiểu')),
         ],
       ),
     );
@@ -752,7 +816,9 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
         title: const Text('Thông Báo Hệ Thống'),
         content: Text(msg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Đóng')),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Đóng')),
         ],
       ),
     );
@@ -763,7 +829,8 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('10.4 Google Sign In')),
-      body: _currentUser != null || (!widget.firebaseInitialized && _currentUser != null)
+      body: _currentUser != null ||
+              (!widget.firebaseInitialized && _currentUser != null)
           ? Center(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -775,12 +842,15 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                       backgroundImage: _currentUser?.photoURL != null
                           ? NetworkImage(_currentUser!.photoURL!)
                           : null,
-                      child: _currentUser?.photoURL == null ? const Icon(Icons.person, size: 40) : null,
+                      child: _currentUser?.photoURL == null
+                          ? const Icon(Icons.person, size: 40)
+                          : null,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       _currentUser?.displayName ?? 'Người Dùng Thử Nghiệm',
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -803,7 +873,8 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.g_mobiledata, size: 100, color: Colors.red),
+                    const Icon(Icons.g_mobiledata,
+                        size: 100, color: Colors.red),
                     const SizedBox(height: 16),
                     const Text(
                       'Đăng nhập bằng tài khoản Google của bạn',
@@ -814,7 +885,8 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                     ElevatedButton.icon(
                       onPressed: _isLoading ? null : _handleGoogleSignIn,
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                         backgroundColor: Colors.red[700],
                         foregroundColor: Colors.white,
                       ),
@@ -845,18 +917,20 @@ class NotificationScreen extends StatefulWidget {
 
 /// Trạng thái lưu trữ của NotificationScreen
 class _NotificationScreenState extends State<NotificationScreen> {
-  
   /// Xin quyền gửi thông báo từ hệ điều hành (Bắt buộc chạy runtime trên Android 13+)
   Future<void> _requestPermissions() async {
     try {
       final bool? granted = await flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
           ?.requestNotificationsPermission();
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(granted == true ? 'Đã được cấp quyền thông báo!' : 'Quyền thông báo bị từ chối!'),
+            content: Text(granted == true
+                ? 'Đã được cấp quyền thông báo!'
+                : 'Quyền thông báo bị từ chối!'),
             backgroundColor: granted == true ? Colors.green : Colors.red,
           ),
         );
@@ -886,7 +960,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Icon(Icons.notifications_active, size: 72, color: Colors.teal),
+              const Icon(Icons.notifications_active,
+                  size: 72, color: Colors.teal),
               const SizedBox(height: 24),
               const Text(
                 'Quản Lý Thông Báo Hệ Thống',
@@ -908,7 +983,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: _triggerManualNotification,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal, foregroundColor: Colors.white),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    foregroundColor: Colors.white),
                 icon: const Icon(Icons.play_arrow),
                 label: const Text('Gửi Thông Báo Tức Thì'),
               ),
@@ -963,7 +1040,8 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_token');
     final name = prefs.getString('auth_name') ?? 'User';
-    await Future.delayed(const Duration(milliseconds: 800)); // Delay tạo hiệu ứng
+    await Future.delayed(
+        const Duration(milliseconds: 800)); // Delay tạo hiệu ứng
     if (mounted) {
       setState(() {
         _currentUserToken = token;
@@ -975,7 +1053,8 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
 
   /// Hàm bất đồng bộ gửi yêu cầu POST đăng nhập DummyJSON và lưu phiên làm việc
   Future<void> _loginAPI() async {
-    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) return;
+    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty)
+      return;
     setState(() => _isLoading = true);
 
     try {
@@ -1027,7 +1106,8 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
 
       showNotification(
         title: 'Google Login (Mock mode)',
-        body: 'Hệ thống chạy giả lập đăng nhập Google vì thiếu firebase_options.dart.',
+        body:
+            'Hệ thống chạy giả lập đăng nhập Google vì thiếu firebase_options.dart.',
       );
 
       setState(() {
@@ -1041,13 +1121,15 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
 
-        final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+        final UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithCredential(credential);
         final name = userCredential.user?.displayName ?? 'Google User';
         final token = userCredential.user?.uid ?? 'google_uid';
 
@@ -1055,7 +1137,8 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
         await prefs.setString('auth_token', token);
         await prefs.setString('auth_name', name);
 
-        showNotification(title: 'Google Login (Full)', body: 'Chào mừng $name!');
+        showNotification(
+            title: 'Google Login (Full)', body: 'Chào mừng $name!');
 
         setState(() {
           _currentUserToken = token;
@@ -1121,9 +1204,12 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
               children: [
                 const Icon(Icons.verified_user, size: 80, color: Colors.indigo),
                 const SizedBox(height: 20),
-                Text('Xin chào, $_currentUserName!', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                Text('Xin chào, $_currentUserName!',
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 8),
-                const Text('Phiên làm việc của bạn đang hoạt động.', style: TextStyle(color: Colors.grey)),
+                const Text('Phiên làm việc của bạn đang hoạt động.',
+                    style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 32),
                 ElevatedButton.icon(
                   onPressed: _logout,
@@ -1152,29 +1238,39 @@ class _FullIntegrationScreenState extends State<FullIntegrationScreen> {
             children: [
               const Icon(Icons.security, size: 64, color: Colors.indigo),
               const SizedBox(height: 16),
-              const Text('Cổng đăng nhập an toàn', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text('Cổng đăng nhập an toàn',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 24),
               TextField(
                 controller: _usernameController,
-                decoration: const InputDecoration(labelText: 'Username (DummyJSON)', border: OutlineInputBorder()),
+                decoration: const InputDecoration(
+                    labelText: 'Username (DummyJSON)',
+                    border: OutlineInputBorder()),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+                decoration: const InputDecoration(
+                    labelText: 'Password', border: OutlineInputBorder()),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _isLoading ? null : _loginAPI,
-                style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(48)),
-                child: _isLoading ? const CircularProgressIndicator() : const Text('ĐĂNG NHẬP API'),
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(48)),
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('ĐĂNG NHẬP API'),
               ),
               const SizedBox(height: 16),
               const Row(
                 children: [
                   Expanded(child: Divider()),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('HOẶC')),
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text('HOẶC')),
                   Expanded(child: Divider()),
                 ],
               ),
@@ -1205,7 +1301,8 @@ class DummyHomeScreen extends StatelessWidget {
   final String title;
   final String userEmail;
 
-  const DummyHomeScreen({super.key, required this.title, required this.userEmail});
+  const DummyHomeScreen(
+      {super.key, required this.title, required this.userEmail});
 
   /// Hàm dựng giao diện chính của DummyHomeScreen
   @override
@@ -1223,9 +1320,11 @@ class DummyHomeScreen extends StatelessWidget {
             children: [
               const Icon(Icons.home, size: 80, color: Colors.blue),
               const SizedBox(height: 20),
-              const Text('Chào mừng đến trang chủ giả lập!', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text('Chào mừng đến trang chủ giả lập!',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
-              Text('Tài khoản: $userEmail', style: const TextStyle(color: Colors.grey)),
+              Text('Tài khoản: $userEmail',
+                  style: const TextStyle(color: Colors.grey)),
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {

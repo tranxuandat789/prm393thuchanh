@@ -103,7 +103,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
       // 3. Chứa ít nhất một chữ số
       if (password.contains(RegExp(r'[0-9]'))) strength += 0.25;
       // 4. Chứa ít nhất một ký tự đặc biệt
-      if (password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) strength += 0.25;
+      if (password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]')))
+        strength += 0.25;
     }
 
     setState(() {
@@ -143,7 +144,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
       // Đăng ký thành công và hiển thị thông báo SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Đăng ký thành công tài khoản cho ${_nameController.text}!'),
+          content:
+              Text('Đăng ký thành công tài khoản cho ${_nameController.text}!'),
           backgroundColor: Colors.green,
           action: SnackBarAction(
             label: 'OK',
@@ -184,9 +186,10 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                     const SizedBox(height: 16),
                     Text(
                       'Tạo Tài Khoản Mới',
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
@@ -202,7 +205,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                       controller: _nameController,
                       focusNode: _nameFocus,
                       textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_emailFocus),
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).requestFocus(_emailFocus),
                       decoration: InputDecoration(
                         labelText: 'Họ và tên',
                         prefixIcon: const Icon(Icons.person),
@@ -225,7 +229,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                       focusNode: _emailFocus,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_passwordFocus),
+                      onFieldSubmitted: (_) =>
+                          FocusScope.of(context).requestFocus(_passwordFocus),
                       decoration: InputDecoration(
                         labelText: 'Email',
                         prefixIcon: const Icon(Icons.email),
@@ -237,7 +242,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                         if (value == null || value.trim().isEmpty) {
                           return 'Vui lòng nhập email';
                         }
-                        final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                        final emailRegex =
+                            RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                         if (!emailRegex.hasMatch(value.trim())) {
                           return 'Định dạng email không hợp lệ';
                         }
@@ -252,13 +258,16 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                       focusNode: _passwordFocus,
                       obscureText: _obscurePassword,
                       textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_confirmPasswordFocus),
+                      onFieldSubmitted: (_) => FocusScope.of(context)
+                          .requestFocus(_confirmPasswordFocus),
                       decoration: InputDecoration(
                         labelText: 'Mật khẩu',
                         prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                           onPressed: () {
                             setState(() {
@@ -292,7 +301,8 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Độ mạnh mật khẩu:', style: TextStyle(fontSize: 12)),
+                            const Text('Độ mạnh mật khẩu:',
+                                style: TextStyle(fontSize: 12)),
                             Text(
                               _passwordStrengthText,
                               style: TextStyle(
@@ -327,11 +337,14 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                         prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                            _obscureConfirmPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                           onPressed: () {
                             setState(() {
-                              _obscureConfirmPassword = !_obscureConfirmPassword;
+                              _obscureConfirmPassword =
+                                  !_obscureConfirmPassword;
                             });
                           },
                         ),
@@ -375,14 +388,16 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: const Text(
                         'ĐĂNG KÝ NGAY',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
                   ],

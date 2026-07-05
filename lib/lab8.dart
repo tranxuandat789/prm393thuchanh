@@ -48,7 +48,9 @@ class ApiService {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        return data.map((item) => Post.fromJson(item as Map<String, dynamic>)).toList();
+        return data
+            .map((item) => Post.fromJson(item as Map<String, dynamic>))
+            .toList();
       } else {
         throw Exception('Mã lỗi phản hồi: ${response.statusCode}');
       }
@@ -135,7 +137,8 @@ class _PostListScreenState extends State<PostListScreen> {
                 children: [
                   CircularProgressIndicator(),
                   SizedBox(height: 16),
-                  Text('Đang tải dữ liệu từ API...', style: TextStyle(color: Colors.grey)),
+                  Text('Đang tải dữ liệu từ API...',
+                      style: TextStyle(color: Colors.grey)),
                 ],
               ),
             );
@@ -149,11 +152,13 @@ class _PostListScreenState extends State<PostListScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.cloud_off, size: 64, color: Colors.redAccent),
+                    const Icon(Icons.cloud_off,
+                        size: 64, color: Colors.redAccent),
                     const SizedBox(height: 16),
                     const Text(
                       'Đã xảy ra lỗi kết nối!',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -200,7 +205,8 @@ class _PostListScreenState extends State<PostListScreen> {
           return RefreshIndicator(
             onRefresh: () async {
               _retryFetch();
-              await _postsFuture.catchError((_) => <Post>[]); // Bọc lỗi tránh crash khi vuốt refresh
+              await _postsFuture.catchError(
+                  (_) => <Post>[]); // Bọc lỗi tránh crash khi vuốt refresh
             },
             child: ListView.builder(
               padding: const EdgeInsets.all(12),
@@ -215,8 +221,10 @@ class _PostListScreenState extends State<PostListScreen> {
                   ),
                   child: ExpansionTile(
                     leading: CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.primaryContainer,
+                      foregroundColor:
+                          Theme.of(context).colorScheme.onPrimaryContainer,
                       child: Text(post.id.toString()),
                     ),
                     title: Text(
@@ -229,10 +237,14 @@ class _PostListScreenState extends State<PostListScreen> {
                     ),
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
+                        padding: const EdgeInsets.only(
+                            left: 16, right: 16, bottom: 16, top: 8),
                         child: Text(
                           post.body,
-                          style: TextStyle(color: Colors.grey[800], height: 1.5, fontSize: 14),
+                          style: TextStyle(
+                              color: Colors.grey[800],
+                              height: 1.5,
+                              fontSize: 14),
                         ),
                       ),
                     ],

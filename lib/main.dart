@@ -7,7 +7,7 @@ import 'screens/home_screen.dart';
 void main() {
   // Ensure Flutter binding is initialized for SharedPreferences
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => BookProvider(),

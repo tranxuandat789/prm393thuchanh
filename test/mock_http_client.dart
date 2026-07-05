@@ -4,12 +4,73 @@ import 'dart:typed_data';
 
 /// Mảng byte đại diện cho 1 ảnh PNG trong suốt kích thước 1x1 pixel.
 final Uint8List transparentImage = Uint8List.fromList([
-  0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
-  0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
-  0x08, 0x06, 0x00, 0x00, 0x00, 0x1F, 0x15, 0xC4, 0x89, 0x00, 0x00, 0x00,
-  0x0A, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9C, 0x63, 0x00, 0x01, 0x00, 0x00,
-  0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00, 0x00, 0x00, 0x00, 0x49,
-  0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82
+  0x89,
+  0x50,
+  0x4E,
+  0x47,
+  0x0D,
+  0x0A,
+  0x1A,
+  0x0A,
+  0x00,
+  0x00,
+  0x00,
+  0x0D,
+  0x49,
+  0x48,
+  0x44,
+  0x52,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x08,
+  0x06,
+  0x00,
+  0x00,
+  0x00,
+  0x1F,
+  0x15,
+  0xC4,
+  0x89,
+  0x00,
+  0x00,
+  0x00,
+  0x0A,
+  0x49,
+  0x44,
+  0x41,
+  0x54,
+  0x78,
+  0x9C,
+  0x63,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x05,
+  0x00,
+  0x01,
+  0x0D,
+  0x0A,
+  0x2D,
+  0xB4,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x49,
+  0x45,
+  0x4E,
+  0x44,
+  0xAE,
+  0x42,
+  0x60,
+  0x82
 ]);
 
 /// Ghi đè cấu hình HTTP mặc định của hệ thống để chuyển hướng tất cả các yêu cầu HTTP
@@ -24,7 +85,8 @@ class MockHttpOverrides extends HttpOverrides {
 /// Lớp giả lập HttpClient sử dụng cơ chế noSuchMethod để tránh lỗi biên dịch khi giao diện SDK thay đổi.
 class MockHttpClient implements HttpClient {
   @override
-  Future<HttpClientRequest> open(String method, String host, int port, String path) {
+  Future<HttpClientRequest> open(
+      String method, String host, int port, String path) {
     return Future.value(MockHttpClientRequest());
   }
 
@@ -34,27 +96,33 @@ class MockHttpClient implements HttpClient {
   }
 
   @override
-  Future<HttpClientRequest> get(String host, int port, String path) => open("get", host, port, path);
+  Future<HttpClientRequest> get(String host, int port, String path) =>
+      open("get", host, port, path);
   @override
   Future<HttpClientRequest> getUrl(Uri url) => openUrl("get", url);
   @override
-  Future<HttpClientRequest> post(String host, int port, String path) => open("post", host, port, path);
+  Future<HttpClientRequest> post(String host, int port, String path) =>
+      open("post", host, port, path);
   @override
   Future<HttpClientRequest> postUrl(Uri url) => openUrl("post", url);
   @override
-  Future<HttpClientRequest> put(String host, int port, String path) => open("put", host, port, path);
+  Future<HttpClientRequest> put(String host, int port, String path) =>
+      open("put", host, port, path);
   @override
   Future<HttpClientRequest> putUrl(Uri url) => openUrl("put", url);
   @override
-  Future<HttpClientRequest> delete(String host, int port, String path) => open("delete", host, port, path);
+  Future<HttpClientRequest> delete(String host, int port, String path) =>
+      open("delete", host, port, path);
   @override
   Future<HttpClientRequest> deleteUrl(Uri url) => openUrl("delete", url);
   @override
-  Future<HttpClientRequest> head(String host, int port, String path) => open("head", host, port, path);
+  Future<HttpClientRequest> head(String host, int port, String path) =>
+      open("head", host, port, path);
   @override
   Future<HttpClientRequest> headUrl(Uri url) => openUrl("head", url);
   @override
-  Future<HttpClientRequest> patch(String host, int port, String path) => open("patch", host, port, path);
+  Future<HttpClientRequest> patch(String host, int port, String path) =>
+      open("patch", host, port, path);
   @override
   Future<HttpClientRequest> patchUrl(Uri url) => openUrl("patch", url);
 
@@ -95,7 +163,8 @@ class MockHttpClientResponse implements HttpClientResponse {
   HttpHeaders get headers => MockHttpHeaders();
 
   @override
-  HttpClientResponseCompressionState get compressionState => HttpClientResponseCompressionState.notCompressed;
+  HttpClientResponseCompressionState get compressionState =>
+      HttpClientResponseCompressionState.notCompressed;
 
   @override
   bool get isRedirect => false;

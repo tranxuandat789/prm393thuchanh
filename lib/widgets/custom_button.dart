@@ -21,7 +21,8 @@ class CustomButton extends StatefulWidget {
   State<CustomButton> createState() => _CustomButtonState();
 }
 
-class _CustomButtonState extends State<CustomButton> with SingleTickerProviderStateMixin {
+class _CustomButtonState extends State<CustomButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -85,14 +86,18 @@ class _CustomButtonState extends State<CustomButton> with SingleTickerProviderSt
                   Icon(
                     widget.icon,
                     size: 18,
-                    color: widget.isPrimary ? Colors.white : AppConstants.primaryColor,
+                    color: widget.isPrimary
+                        ? Colors.white
+                        : AppConstants.primaryColor,
                   ),
                   const SizedBox(width: 8),
                 ],
                 Text(
                   widget.text,
                   style: TextStyle(
-                    color: widget.isPrimary ? Colors.white : AppConstants.primaryColor,
+                    color: widget.isPrimary
+                        ? Colors.white
+                        : AppConstants.primaryColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
                   ),

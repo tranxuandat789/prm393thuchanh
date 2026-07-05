@@ -33,26 +33,28 @@ class BookProvider extends ChangeNotifier {
   Future<void> _loadFromPrefs() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      
+
       // Load dark mode
       _isDarkMode = prefs.getBool(_keyDarkMode) ?? false;
-      
+
       // Load font size
       _fontSize = prefs.getDouble(_keyFontSize) ?? 18.0;
-      
+
       // Load bookmarks
       final bookmarksJson = prefs.getStringList(_keyBookmarks) ?? [];
       _bookmarks = bookmarksJson
-          .map((item) => Bookmark.fromJson(jsonDecode(item) as Map<String, dynamic>))
+          .map((item) =>
+              Bookmark.fromJson(jsonDecode(item) as Map<String, dynamic>))
           .toList();
-      
+
       // Load reading progress
       final progressString = prefs.getString(_keyProgress);
       if (progressString != null) {
         final decoded = jsonDecode(progressString) as Map<String, dynamic>;
-        _readingProgress = decoded.map((key, value) => MapEntry(key, value as int));
+        _readingProgress =
+            decoded.map((key, value) => MapEntry(key, value as int));
       }
-      
+
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading from SharedPreferences: $e');
@@ -77,11 +79,13 @@ class BookProvider extends ChangeNotifier {
 
   // Check if a chapter is bookmarked
   bool isBookmarked(String bookId, int chapterIndex) {
-    return _bookmarks.any((b) => b.bookId == bookId && b.chapterIndex == chapterIndex);
+    return _bookmarks
+        .any((b) => b.bookId == bookId && b.chapterIndex == chapterIndex);
   }
 
   // Add a Bookmark
-  Future<void> addBookmark(Book book, int chapterIndex, String chapterTitle) async {
+  Future<void> addBookmark(
+      Book book, int chapterIndex, String chapterTitle) async {
     // Check if already exists to avoid duplicate
     if (isBookmarked(book.id, chapterIndex)) return;
 
@@ -114,9 +118,11 @@ class BookProvider extends ChangeNotifier {
   }
 
   // Remove a Bookmark by Book details (Toggle)
-  Future<void> toggleBookmarkByDetails(Book book, int chapterIndex, String chapterTitle) async {
+  Future<void> toggleBookmarkByDetails(
+      Book book, int chapterIndex, String chapterTitle) async {
     if (isBookmarked(book.id, chapterIndex)) {
-      final existing = _bookmarks.firstWhere((b) => b.bookId == book.id && b.chapterIndex == chapterIndex);
+      final existing = _bookmarks.firstWhere(
+          (b) => b.bookId == book.id && b.chapterIndex == chapterIndex);
       await removeBookmark(existing.id);
     } else {
       await addBookmark(book, chapterIndex, chapterTitle);

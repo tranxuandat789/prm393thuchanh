@@ -27,7 +27,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
   void initState() {
     super.initState();
     _currentChapterIndex = widget.initialChapterIndex;
-    
+
     // Save progress to provider immediately upon opening the chapter
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<BookProvider>(context, listen: false)
@@ -70,7 +70,8 @@ class _ReaderScreenState extends State<ReaderScreen> {
       context: context,
       backgroundColor: Theme.of(context).cardTheme.color,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(AppConstants.radiusLarge)),
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppConstants.radiusLarge)),
       ),
       builder: (context) {
         return Consumer<BookProvider>(
@@ -89,7 +90,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
                       width: 40,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.2),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -107,7 +111,8 @@ class _ReaderScreenState extends State<ReaderScreen> {
                     children: [
                       const Text(
                         'Cỡ chữ',
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600),
                       ),
                       const Spacer(),
                       Text(
@@ -130,7 +135,8 @@ class _ReaderScreenState extends State<ReaderScreen> {
                           max: 30.0,
                           divisions: 8,
                           activeColor: AppConstants.primaryColor,
-                          inactiveColor: AppConstants.primaryColor.withOpacity(0.15),
+                          inactiveColor:
+                              AppConstants.primaryColor.withOpacity(0.15),
                           onChanged: (value) => provider.setFontSize(value),
                         ),
                       ),
@@ -151,11 +157,15 @@ class _ReaderScreenState extends State<ReaderScreen> {
   Widget build(BuildContext context) {
     final bookProvider = Provider.of<BookProvider>(context);
     final currentChapter = widget.book.chapters[_currentChapterIndex];
-    final isBookmarked = bookProvider.isBookmarked(widget.book.id, _currentChapterIndex);
+    final isBookmarked =
+        bookProvider.isBookmarked(widget.book.id, _currentChapterIndex);
 
     // Dynamic background and text colors according to Dark Mode
-    final backgroundColor = bookProvider.isDarkMode ? AppConstants.darkBg : AppConstants.lightBg;
-    final textColor = bookProvider.isDarkMode ? AppConstants.darkText : AppConstants.lightText;
+    final backgroundColor =
+        bookProvider.isDarkMode ? AppConstants.darkBg : AppConstants.lightBg;
+    final textColor = bookProvider.isDarkMode
+        ? AppConstants.darkText
+        : AppConstants.lightText;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -173,7 +183,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
           // Bookmark Toggle Icon
           IconButton(
             icon: Icon(
-              isBookmarked ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+              isBookmarked
+                  ? Icons.bookmark_rounded
+                  : Icons.bookmark_border_rounded,
               color: isBookmarked ? AppConstants.primaryColor : null,
             ),
             onPressed: () {
@@ -199,7 +211,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
           // Dark Mode quick toggle
           IconButton(
             icon: Icon(
-              bookProvider.isDarkMode ? Icons.wb_sunny_rounded : Icons.nightlight_round,
+              bookProvider.isDarkMode
+                  ? Icons.wb_sunny_rounded
+                  : Icons.nightlight_round,
               size: 20,
             ),
             onPressed: () => bookProvider.toggleDarkMode(),
@@ -265,14 +279,16 @@ class _ReaderScreenState extends State<ReaderScreen> {
       ),
       // Navigation bottom bar to switch chapters easily
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium, vertical: 12),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.paddingMedium, vertical: 12),
         decoration: BoxDecoration(
           color: bookProvider.isDarkMode
               ? AppConstants.darkCardBg.withOpacity(0.9)
               : Colors.white.withOpacity(0.9),
           border: Border(
             top: BorderSide(
-              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.08),
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.08),
               width: 1,
             ),
           ),
@@ -282,7 +298,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
           children: [
             // Previous Chapter Button
             TextButton.icon(
-              onPressed: _currentChapterIndex > 0 ? () => _changeChapter(_currentChapterIndex - 1) : null,
+              onPressed: _currentChapterIndex > 0
+                  ? () => _changeChapter(_currentChapterIndex - 1)
+                  : null,
               icon: const Icon(Icons.arrow_back_rounded, size: 18),
               label: const Text('Chương trước'),
               style: TextButton.styleFrom(

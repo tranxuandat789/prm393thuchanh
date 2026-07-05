@@ -21,7 +21,8 @@ void main() {
   });
 
   /// Test kiểm tra xem Lab 5 App có khởi tạo bình thường và hiển thị danh sách phim tĩnh hay không
-  testWidgets('Lab 5 App hien thi danh sach phim tinh', (WidgetTester tester) async {
+  testWidgets('Lab 5 App hien thi danh sach phim tinh',
+      (WidgetTester tester) async {
     // 1. Build widget Lab5App
     await tester.pumpWidget(const Lab5App());
 
@@ -35,12 +36,13 @@ void main() {
   });
 
   /// Test kiểm tra tương tác click mở màn hình chi tiết phim
-  testWidgets('Lab 5 dieu huong den man hinh Chi tiet phim', (WidgetTester tester) async {
+  testWidgets('Lab 5 dieu huong den man hinh Chi tiet phim',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const Lab5App());
 
     // Tap vào phim Inception
     await tester.tap(find.text('Inception'));
-    
+
     // Đợi transition chuyển đổi trang hoàn tất
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));

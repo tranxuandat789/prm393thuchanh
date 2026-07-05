@@ -37,8 +37,10 @@ const List<Movie> sampleMovies = [
   Movie(
     id: '1',
     title: 'Inception',
-    posterUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    overview: 'Dom Cobb là một kẻ cắp chuyên nghiệp, người có khả năng xâm nhập vào tiềm thức của người khác thông qua giấc mơ để đánh cắp các bí mật kinh doanh. Lần này, anh nhận một nhiệm vụ ngược lại: cấy một ý tưởng vào tâm trí của một CEO.',
+    posterUrl:
+        'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    overview:
+        'Dom Cobb là một kẻ cắp chuyên nghiệp, người có khả năng xâm nhập vào tiềm thức của người khác thông qua giấc mơ để đánh cắp các bí mật kinh doanh. Lần này, anh nhận một nhiệm vụ ngược lại: cấy một ý tưởng vào tâm trí của một CEO.',
     genres: ['Hành động', 'Khoa học viễn tưởng', 'Giật gân'],
     rating: 8.8,
     trailers: ['Official Trailer 1', 'Teaser Trailer', 'Behind the Scenes'],
@@ -46,8 +48,10 @@ const List<Movie> sampleMovies = [
   Movie(
     id: '2',
     title: 'The Dark Knight',
-    posterUrl: 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    overview: 'Khi Joker xuất hiện tàn phá thành phố Gotham, Batman phải đối mặt với thử thách lớn nhất về mặt tâm lý lẫn thể chất để ngăn chặn tên tội phạm điên cuồng này và bảo vệ những người vô tội.',
+    posterUrl:
+        'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    overview:
+        'Khi Joker xuất hiện tàn phá thành phố Gotham, Batman phải đối mặt với thử thách lớn nhất về mặt tâm lý lẫn thể chất để ngăn chặn tên tội phạm điên cuồng này và bảo vệ những người vô tội.',
     genres: ['Hành động', 'Tội phạm', 'Kịch tính'],
     rating: 9.0,
     trailers: ['Teaser Trailer', 'Main Trailer', 'IMAX Trailer'],
@@ -55,8 +59,10 @@ const List<Movie> sampleMovies = [
   Movie(
     id: '3',
     title: 'Interstellar',
-    posterUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    overview: 'Trái Đất đang đứng trước bờ vực diệt vong. Một nhóm các nhà thám hiểm không gian du hành qua một lỗ sâu mới được phát hiện ngoài vũ trụ để tìm kiếm một hành tinh mới có sự sống cho nhân loại.',
+    posterUrl:
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    overview:
+        'Trái Đất đang đứng trước bờ vực diệt vong. Một nhóm các nhà thám hiểm không gian du hành qua một lỗ sâu mới được phát hiện ngoài vũ trụ để tìm kiếm một hành tinh mới có sự sống cho nhân loại.',
     genres: ['Phiêu lưu', 'Khoa học viễn tưởng', 'Kịch tính'],
     rating: 8.7,
     trailers: ['Teaser 1', 'Official Trailer 3', 'Final Trailer'],
@@ -144,7 +150,10 @@ class Lab5HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             movie.title,
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                             maxLines: 1,
@@ -153,11 +162,15 @@ class Lab5HomeScreen extends StatelessWidget {
                           const SizedBox(height: 8),
                           Row(
                             children: [
-                              const Icon(Icons.star, color: Colors.amber, size: 20),
+                              const Icon(Icons.star,
+                                  color: Colors.amber, size: 20),
                               const SizedBox(width: 4),
                               Text(
                                 movie.rating.toString(),
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -173,7 +186,10 @@ class Lab5HomeScreen extends StatelessWidget {
                             movie.overview,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   color: Colors.grey[300],
                                 ),
                           ),
@@ -183,7 +199,8 @@ class Lab5HomeScreen extends StatelessWidget {
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 16, right: 16),
-                    child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                    child: Icon(Icons.arrow_forward_ios,
+                        size: 16, color: Colors.grey),
                   ),
                 ],
               ),
@@ -266,7 +283,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       final starRating = index + 1.0;
                       return IconButton(
                         icon: Icon(
-                          starRating <= selectedRating ? Icons.star : Icons.star_border,
+                          starRating <= selectedRating
+                              ? Icons.star
+                              : Icons.star_border,
                           color: Colors.amber,
                           size: 36,
                         ),
@@ -296,7 +315,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 });
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Cảm ơn bạn đã đánh giá ${_userRating!.round()} sao!')),
+                  SnackBar(
+                      content: Text(
+                          'Cảm ơn bạn đã đánh giá ${_userRating!.round()} sao!')),
                 );
               },
               child: const Text('Gửi'),
@@ -371,8 +392,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   Text(
                     movie.title,
                     style: theme.textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -382,13 +403,14 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       Text(
                         movie.rating.toString(),
                         style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '(IMDb)',
-                        style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                        style: theme.textTheme.bodyMedium
+                            ?.copyWith(color: Colors.grey),
                       ),
                     ],
                   ),
@@ -399,7 +421,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildActionButton(
-                        icon: _isFavorite ? Icons.favorite : Icons.favorite_border,
+                        icon: _isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
                         label: 'Yêu thích',
                         color: _isFavorite ? Colors.red : Colors.white,
                         onTap: () {
@@ -409,7 +433,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                _isFavorite ? 'Đã thêm vào mục Yêu thích' : 'Đã xóa khỏi mục Yêu thích',
+                                _isFavorite
+                                    ? 'Đã thêm vào mục Yêu thích'
+                                    : 'Đã xóa khỏi mục Yêu thích',
                               ),
                               duration: const Duration(seconds: 1),
                             ),
@@ -418,8 +444,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ),
                       _buildActionButton(
                         icon: Icons.star_border,
-                        label: _userRating == null ? 'Đánh giá' : 'Đã đánh giá: ${_userRating!.round()}',
-                        color: _userRating != null ? Colors.amber : Colors.white,
+                        label: _userRating == null
+                            ? 'Đánh giá'
+                            : 'Đã đánh giá: ${_userRating!.round()}',
+                        color:
+                            _userRating != null ? Colors.amber : Colors.white,
                         onTap: () => _showRatingDialog(context),
                       ),
                       _buildActionButton(
@@ -429,7 +458,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         onTap: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Đang chia sẻ bộ phim "${movie.title}"...'),
+                              content: Text(
+                                  'Đang chia sẻ bộ phim "${movie.title}"...'),
                             ),
                           );
                         },
@@ -450,8 +480,10 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                     children: movie.genres
                         .map((genre) => Chip(
                               label: Text(genre),
-                              backgroundColor: theme.colorScheme.primaryContainer,
-                              labelStyle: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+                              backgroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              labelStyle: TextStyle(
+                                  color: theme.colorScheme.onPrimaryContainer),
                             ))
                         .toList(),
                   ),
@@ -466,9 +498,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   Text(
                     movie.overview,
                     style: theme.textTheme.bodyLarge?.copyWith(
-                          height: 1.5,
-                          color: Colors.grey[300],
-                        ),
+                      height: 1.5,
+                      color: Colors.grey[300],
+                    ),
                   ),
                   const SizedBox(height: 24),
 
@@ -493,7 +525,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 return Card(
                   margin: const EdgeInsets.only(bottom: 8),
                   child: ListTile(
-                    leading: const Icon(Icons.play_circle_fill, color: Color(0xFFE50914), size: 36),
+                    leading: const Icon(Icons.play_circle_fill,
+                        color: Color(0xFFE50914), size: 36),
                     title: Text(trailerName),
                     subtitle: const Text('Độ phân giải 1080p'),
                     trailing: const Icon(Icons.arrow_forward),

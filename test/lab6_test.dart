@@ -18,7 +18,8 @@ void main() {
   });
 
   /// Test kiểm tra xem Lab 6 App có khởi tạo bình thường và hiển thị các điều khiển tìm kiếm lọc phim hay không
-  testWidgets('Lab 6 App hien thi trinh duyet phim responsive', (WidgetTester tester) async {
+  testWidgets('Lab 6 App hien thi trinh duyet phim responsive',
+      (WidgetTester tester) async {
     // 1. Build widget Lab6App
     await tester.pumpWidget(const Lab6App());
 

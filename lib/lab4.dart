@@ -28,7 +28,8 @@ class _Lab4AppState extends State<Lab4App> {
   /// Hàm xử lý chuyển đổi qua lại giữa Chế độ sáng và Chế độ tối
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+      _themeMode =
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     });
   }
 
@@ -152,7 +153,8 @@ class Lab4HomeScreen extends StatelessWidget {
                   // Điều hướng sang màn hình bài tập tương ứng
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => exercise['screen'] as Widget),
+                    MaterialPageRoute(
+                        builder: (context) => exercise['screen'] as Widget),
                   );
                 },
                 child: Padding(
@@ -178,14 +180,20 @@ class Lab4HomeScreen extends StatelessWidget {
                           children: [
                             Text(
                               exercise['title'] as String,
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               exercise['subtitle'] as String,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
                                     color: Colors.grey[600],
                                   ),
                             ),
@@ -230,7 +238,8 @@ class Exercise1Screen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
                 child: Image.network(
                   'https://picsum.photos/800/400',
                   height: 200,
@@ -241,7 +250,8 @@ class Exercise1Screen extends StatelessWidget {
                       height: 200,
                       color: Colors.grey[300],
                       alignment: Alignment.center,
-                      child: const Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                      child: const Icon(Icons.broken_image,
+                          size: 50, color: Colors.grey),
                     );
                   },
                 ),
@@ -261,7 +271,10 @@ class Exercise1Screen extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           'Khám phá Flutter',
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
@@ -386,7 +399,8 @@ class _Exercise2ScreenState extends State<Exercise2Screen> {
           Card(
             margin: const EdgeInsets.only(bottom: 16),
             child: SwitchListTile(
-              title: const Text('Nhận thông báo', style: TextStyle(fontWeight: FontWeight.bold)),
+              title: const Text('Nhận thông báo',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('Bật để nhận tin tức mới nhất qua email'),
               value: _switchValue,
               onChanged: (bool value) {
@@ -440,7 +454,8 @@ class _Exercise2ScreenState extends State<Exercise2Screen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Chọn ngày sinh:', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const Text('Chọn ngày sinh:',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8),
                         Text(
                           _selectedDate == null
@@ -473,7 +488,8 @@ class Exercise3Screen extends StatelessWidget {
   const Exercise3Screen({super.key});
 
   /// Hàm tạo nhanh các nút chức năng dạng vòng tròn với icon và nhãn tương ứng
-  Widget _buildActionItem(BuildContext context, IconData icon, String label, Color color) {
+  Widget _buildActionItem(
+      BuildContext context, IconData icon, String label, Color color) {
     return Column(
       children: [
         Container(
@@ -485,7 +501,8 @@ class Exercise3Screen extends StatelessWidget {
           child: Icon(icon, color: color, size: 28),
         ),
         const SizedBox(height: 6),
-        Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        Text(label,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
       ],
     );
   }
@@ -504,9 +521,12 @@ class Exercise3Screen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildActionItem(context, Icons.share, 'Chia sẻ', Colors.indigo),
-                _buildActionItem(context, Icons.favorite, 'Yêu thích', Colors.red),
-                _buildActionItem(context, Icons.comment, 'Bình luận', Colors.green),
+                _buildActionItem(
+                    context, Icons.share, 'Chia sẻ', Colors.indigo),
+                _buildActionItem(
+                    context, Icons.favorite, 'Yêu thích', Colors.red),
+                _buildActionItem(
+                    context, Icons.comment, 'Bình luận', Colors.green),
               ],
             ),
             const SizedBox(height: 20),
@@ -520,12 +540,14 @@ class Exercise3Screen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
                           child: Text('${index + 1}'),
                         ),
                         title: Text('Thành viên nhóm ${index + 1}'),
                         subtitle: const Text('Vai trò: Thành viên tích cực'),
-                        trailing: const Icon(Icons.check_circle, color: Colors.green, size: 20),
+                        trailing: const Icon(Icons.check_circle,
+                            color: Colors.green, size: 20),
                       );
                     },
                   ),
@@ -572,14 +594,18 @@ class Exercise4Screen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              isDark ? 'Chế độ tối (Dark Mode) đang bật' : 'Chế độ sáng (Light Mode) đang bật',
+              isDark
+                  ? 'Chế độ tối (Dark Mode) đang bật'
+                  : 'Chế độ sáng (Light Mode) đang bật',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: onToggleTheme,
               icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-              label: Text(isDark ? 'Chuyển sang Chế độ sáng' : 'Chuyển sang Chế độ tối'),
+              label: Text(isDark
+                  ? 'Chuyển sang Chế độ sáng'
+                  : 'Chuyển sang Chế độ tối'),
             ),
           ],
         ),
@@ -629,11 +655,17 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.teal)),
+            Text(title,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.teal)),
             const SizedBox(height: 8),
-            Text(description, style: const TextStyle(fontSize: 13, color: Colors.redAccent)),
+            Text(description,
+                style: const TextStyle(fontSize: 13, color: Colors.redAccent)),
             const SizedBox(height: 8),
-            Text(fixDescription, style: const TextStyle(fontSize: 13, color: Colors.green)),
+            Text(fixDescription,
+                style: const TextStyle(fontSize: 13, color: Colors.green)),
             const SizedBox(height: 12),
             demoWidget,
           ],
@@ -657,8 +689,10 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
             // 1. ListView inside Column Error & Fix demo
             _buildBugFixSection(
               title: '1. Lỗi ListView trong Column (Chưa khai báo chiều cao)',
-              description: 'Lỗi xảy ra: Lỗi vỡ giao diện (RenderBox was not laid out) khi ListView.builder đặt trực tiếp trong Column mà không chỉ rõ chiều cao.',
-              fixDescription: 'Giải pháp: Bọc ListView.builder trong widget Expanded (để chiếm hết không gian còn lại) hoặc đặt chiều cao cố định bằng SizedBox.',
+              description:
+                  'Lỗi xảy ra: Lỗi vỡ giao diện (RenderBox was not laid out) khi ListView.builder đặt trực tiếp trong Column mà không chỉ rõ chiều cao.',
+              fixDescription:
+                  'Giải pháp: Bọc ListView.builder trong widget Expanded (để chiếm hết không gian còn lại) hoặc đặt chiều cao cố định bằng SizedBox.',
               demoWidget: Container(
                 height: 150,
                 decoration: BoxDecoration(
@@ -671,13 +705,15 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
                       color: Colors.green.withOpacity(0.1),
                       width: double.infinity,
                       padding: const EdgeInsets.all(8),
-                      child: const Text('Tiêu đề Column', style: TextStyle(fontWeight: FontWeight.bold)),
+                      child: const Text('Tiêu đề Column',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: 3,
                         itemBuilder: (context, idx) => ListTile(
-                          title: Text('Mục danh sách thứ $idx (Đã sửa bằng Expanded)'),
+                          title: Text(
+                              'Mục danh sách thứ $idx (Đã sửa bằng Expanded)'),
                           dense: true,
                         ),
                       ),
@@ -691,8 +727,10 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
             // 2. Overflow/Keyboard issue demo
             _buildBugFixSection(
               title: '2. Lỗi Overflow bàn phím / nội dung màn hình',
-              description: 'Lỗi xảy ra: Bị vạch sọc vàng đen (overflow) khi nội dung quá dài hoặc khi bàn phím ảo đẩy lên che khuất nội dung.',
-              fixDescription: 'Giải pháp: Sử dụng SingleChildScrollView để bọc nội dung, giúp màn hình cuộn được khi tràn không gian.',
+              description:
+                  'Lỗi xảy ra: Bị vạch sọc vàng đen (overflow) khi nội dung quá dài hoặc khi bàn phím ảo đẩy lên che khuất nội dung.',
+              fixDescription:
+                  'Giải pháp: Sử dụng SingleChildScrollView để bọc nội dung, giúp màn hình cuộn được khi tràn không gian.',
               demoWidget: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -709,9 +747,12 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
 
             // 3. setState inside Dialog update issue
             _buildBugFixSection(
-              title: '3. Lỗi setState trong Dialog/BottomSheet không cập nhật UI',
-              description: 'Lỗi xảy ra: Gọi setState() ở widget cha nhưng switch hoặc slider bên trong AlertDialog/BottomSheet không cập nhật do dialog dùng context riêng.',
-              fixDescription: 'Giải pháp: Sử dụng StatefulBuilder bên trong Dialog hoặc tách nội dung Dialog thành một StatefulWidget riêng để gọi setState nội bộ.',
+              title:
+                  '3. Lỗi setState trong Dialog/BottomSheet không cập nhật UI',
+              description:
+                  'Lỗi xảy ra: Gọi setState() ở widget cha nhưng switch hoặc slider bên trong AlertDialog/BottomSheet không cập nhật do dialog dùng context riêng.',
+              fixDescription:
+                  'Giải pháp: Sử dụng StatefulBuilder bên trong Dialog hoặc tách nội dung Dialog thành một StatefulWidget riêng để gọi setState nội bộ.',
               demoWidget: ElevatedButton(
                 onPressed: () {
                   // Mở hộp thoại chứa StatefulBuilder để tự cập nhật state cục bộ
@@ -727,7 +768,9 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
                               children: [
                                 const Text('Thay đổi Switch dưới đây:'),
                                 SwitchListTile(
-                                  title: Text(_dialogSwitch ? 'Trạng thái: Bật' : 'Trạng thái: Tắt'),
+                                  title: Text(_dialogSwitch
+                                      ? 'Trạng thái: Bật'
+                                      : 'Trạng thái: Tắt'),
                                   value: _dialogSwitch,
                                   onChanged: (val) {
                                     // Ta phải dùng setState của StatefulBuilder để update cục bộ dialog
@@ -752,16 +795,20 @@ class _Exercise5ScreenState extends State<Exercise5Screen> {
                     },
                   );
                 },
-                child: Text('Mở Dialog Demo (Trạng thái hiện tại: ${_dialogSwitch ? "Bật" : "Tắt"})'),
+                child: Text(
+                    'Mở Dialog Demo (Trạng thái hiện tại: ${_dialogSwitch ? "Bật" : "Tắt"})'),
               ),
             ),
             const SizedBox(height: 20),
 
             // 4. DatePicker Context Issue
             _buildBugFixSection(
-              title: '4. Lỗi DatePicker dùng sai context / setState sau khi dispose',
-              description: 'Lỗi xảy ra: Gọi showDatePicker bằng một context bất đồng bộ đã bị huỷ (unmounted) dẫn đến crash ứng dụng.',
-              fixDescription: 'Giải pháp: Kiểm tra kiểm định mounted (if (!mounted) return;) sau khi kết quả async trả về trước khi gọi setState().',
+              title:
+                  '4. Lỗi DatePicker dùng sai context / setState sau khi dispose',
+              description:
+                  'Lỗi xảy ra: Gọi showDatePicker bằng một context bất đồng bộ đã bị huỷ (unmounted) dẫn đến crash ứng dụng.',
+              fixDescription:
+                  'Giải pháp: Kiểm tra kiểm định mounted (if (!mounted) return;) sau khi kết quả async trả về trước khi gọi setState().',
               demoWidget: ElevatedButton(
                 onPressed: () async {
                   final pickedDate = await showDatePicker(

@@ -28,7 +28,8 @@ class CategorySelector extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         itemCount: categories.length,
-        padding: const EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
+        padding:
+            const EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
         itemBuilder: (context, index) {
           final category = categories[index];
           final isSelected = selectedCategory == category;
@@ -41,7 +42,10 @@ class CategorySelector extends StatelessWidget {
                 style: TextStyle(
                   color: isSelected
                       ? Colors.white
-                      : Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                      : Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.8),
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -58,7 +62,10 @@ class CategorySelector extends StatelessWidget {
                 side: BorderSide(
                   color: isSelected
                       ? Colors.transparent
-                      : Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                      : Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.1),
                 ),
               ),
             ),

@@ -178,16 +178,13 @@ void exercise3() {
 //////////////////////////////////////////////////////////////////
 
 Future<void> exercise4() async {
-  Stream<int> numberStream =
-      Stream.fromIterable([1, 2, 3, 4, 5]);
+  Stream<int> numberStream = Stream.fromIterable([1, 2, 3, 4, 5]);
 
   // Square numbers
-  Stream<int> squaredStream =
-      numberStream.map((number) => number * number);
+  Stream<int> squaredStream = numberStream.map((number) => number * number);
 
   // Filter even squares
-  Stream<int> evenSquares =
-      squaredStream.where((number) => number % 2 == 0);
+  Stream<int> evenSquares = squaredStream.where((number) => number % 2 == 0);
 
   await for (var value in evenSquares) {
     print("Even Square: $value");

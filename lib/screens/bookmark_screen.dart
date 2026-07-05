@@ -46,14 +46,20 @@ class BookmarkScreen extends StatelessWidget {
                     Icon(
                       Icons.bookmark_outline_rounded,
                       size: 80,
-                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.15),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.15),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'Chưa có dấu trang nào được lưu',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.5),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -62,7 +68,10 @@ class BookmarkScreen extends StatelessWidget {
                       'Hãy nhấn nút Bookmark khi đọc để lưu lại',
                       style: TextStyle(
                         fontSize: 13,
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.4),
                       ),
                     ),
                   ],
@@ -89,9 +98,11 @@ class BookmarkScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       decoration: BoxDecoration(
                         color: Colors.redAccent.withOpacity(0.9),
-                        borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+                        borderRadius:
+                            BorderRadius.circular(AppConstants.radiusMedium),
                       ),
-                      child: const Icon(Icons.delete_rounded, color: Colors.white),
+                      child:
+                          const Icon(Icons.delete_rounded, color: Colors.white),
                     ),
                     onDismissed: (direction) {
                       bookProvider.removeBookmark(bookmark.id);
@@ -108,7 +119,8 @@ class BookmarkScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardTheme.color,
-                        borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+                        borderRadius:
+                            BorderRadius.circular(AppConstants.radiusMedium),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.02),
@@ -138,11 +150,13 @@ class BookmarkScreen extends StatelessWidget {
                             width: 50,
                             height: 70,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) => Container(
+                            errorBuilder: (context, error, stackTrace) =>
+                                Container(
                               width: 50,
                               height: 70,
                               color: AppConstants.primaryColor.withOpacity(0.2),
-                              child: const Icon(Icons.book, size: 24, color: AppConstants.primaryColor),
+                              child: const Icon(Icons.book,
+                                  size: 24, color: AppConstants.primaryColor),
                             ),
                           ),
                         ),
@@ -175,21 +189,28 @@ class BookmarkScreen extends StatelessWidget {
                                 Icon(
                                   Icons.access_time_rounded,
                                   size: 12,
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.4),
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
                                   _formatDateTime(bookmark.savedAt),
                                   style: TextStyle(
                                     fontSize: 11,
-                                    color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground
+                                        .withOpacity(0.4),
                                   ),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                        trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                        trailing: const Icon(Icons.arrow_forward_ios_rounded,
+                            size: 14),
                       ),
                     ),
                   ).animate().fadeIn(delay: (index * 50).ms, duration: 350.ms);

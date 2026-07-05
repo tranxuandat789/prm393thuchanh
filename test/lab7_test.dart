@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prm393_tranxuandat/lab7.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 7
 void main() {
   /// Test kiểm tra xem Lab 7 App có khởi tạo bình thường và hiển thị Signup Form đầy đủ các trường nhập hay không
-  testWidgets('Lab 7 App hien thi form dang ky day du', (WidgetTester tester) async {
+  testWidgets('Lab 7 App hien thi form dang ky day du',
+      (WidgetTester tester) async {
     // 1. Build widget Lab7App
     await tester.pumpWidget(const Lab7App());
 
@@ -21,7 +22,8 @@ void main() {
   });
 
   /// Test kiểm tra tính năng validation cảnh báo lỗi khi không nhập thông tin mà bấm đăng ký
-  testWidgets('Lab 7 validate form khi click button dang ky ma de trong', (WidgetTester tester) async {
+  testWidgets('Lab 7 validate form khi click button dang ky ma de trong',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const Lab7App());
 
     // Đảm bảo cuộn tới nút "ĐĂNG KÝ NGAY" để tránh lỗi nằm ngoài màn hình kiểm thử (bounds Size(800.0, 600.0))

@@ -18,7 +18,8 @@ class BookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bookProvider = Provider.of<BookProvider>(context);
-    final progress = bookProvider.getProgressPercentage(book.id, book.chapters.length);
+    final progress =
+        bookProvider.getProgressPercentage(book.id, book.chapters.length);
 
     if (isHorizontal) {
       // Horizontal Card layout for "Continue Reading"
@@ -58,7 +59,8 @@ class BookCard extends StatelessWidget {
                       width: 70,
                       height: 90,
                       color: AppConstants.primaryColor.withOpacity(0.2),
-                      child: const Icon(Icons.book, color: AppConstants.primaryColor),
+                      child: const Icon(Icons.book,
+                          color: AppConstants.primaryColor),
                     ),
                   ),
                 ),
@@ -86,7 +88,10 @@ class BookCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 13,
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.6),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -109,8 +114,10 @@ class BookCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                       child: LinearProgressIndicator(
                         value: progress,
-                        backgroundColor: AppConstants.primaryColor.withOpacity(0.1),
-                        valueColor: const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
+                        backgroundColor:
+                            AppConstants.primaryColor.withOpacity(0.1),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                            AppConstants.primaryColor),
                         minHeight: 6,
                       ),
                     ),
@@ -158,9 +165,11 @@ class BookCard extends StatelessWidget {
                         child: Image.network(
                           book.coverUrl,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
                             color: AppConstants.primaryColor.withOpacity(0.2),
-                            child: const Icon(Icons.book, size: 40, color: AppConstants.primaryColor),
+                            child: const Icon(Icons.book,
+                                size: 40, color: AppConstants.primaryColor),
                           ),
                         ),
                       ),
@@ -171,7 +180,8 @@ class BookCard extends StatelessWidget {
                     top: 8,
                     right: 8,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(12),
@@ -217,7 +227,10 @@ class BookCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 11,
-                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.6),
                     ),
                   ),
                   // Render progress mini bar if started
@@ -228,8 +241,10 @@ class BookCard extends StatelessWidget {
                       child: LinearProgressIndicator(
                         value: progress,
                         minHeight: 3,
-                        backgroundColor: AppConstants.primaryColor.withOpacity(0.1),
-                        valueColor: const AlwaysStoppedAnimation<Color>(AppConstants.primaryColor),
+                        backgroundColor:
+                            AppConstants.primaryColor.withOpacity(0.1),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                            AppConstants.primaryColor),
                       ),
                     ),
                   ]

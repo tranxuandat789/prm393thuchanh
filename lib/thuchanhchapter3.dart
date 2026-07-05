@@ -2,6 +2,7 @@
 // 1. ABSTRACT CLASS
 // =============================
 import 'dart:async';
+
 abstract class Shape {
   double area();
 }
@@ -154,11 +155,7 @@ void genericConstraintDemo() {
 void collectionDemo() {
   var base = [1, 2, 3];
 
-  var list = [
-    ...base,
-    if (true) 99,
-    for (var x in base) x * 10
-  ];
+  var list = [...base, if (true) 99, for (var x in base) x * 10];
 
   print(list);
 }
@@ -209,9 +206,7 @@ void eventLoopDemo() {
 // =============================
 
 void futureChainDemo() {
-  Future(() => 1)
-      .then((v) => v + 1)
-      .then((v) => print(v));
+  Future(() => 1).then((v) => v + 1).then((v) => print(v));
 }
 
 // =============================
@@ -340,7 +335,6 @@ Future<void> practiceTaskDemo() async {
 // =============================
 // MAIN
 // =============================
-
 
 Future<void> main() async {
   abstractDemo();

@@ -18,7 +18,8 @@ void main() {
   });
 
   /// Test kiểm tra xem Lab 4 App có khởi tạo bình thường và hiển thị đầy đủ menu hay không
-  testWidgets('Lab 4 App khoi tao va hien thi menu chinh', (WidgetTester tester) async {
+  testWidgets('Lab 4 App khoi tao va hien thi menu chinh',
+      (WidgetTester tester) async {
     // 1. Build widget Lab4App
     await tester.pumpWidget(const Lab4App());
 
@@ -34,7 +35,8 @@ void main() {
   });
 
   /// Test kiểm tra tương tác click mở màn hình bài tập 1
-  testWidgets('Lab 4 dieu huong den man hinh Exercise 1', (WidgetTester tester) async {
+  testWidgets('Lab 4 dieu huong den man hinh Exercise 1',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const Lab4App());
 
     // Tap vào bài tập 1

@@ -23,10 +23,13 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
         ),
       ),
-      textTheme: GoogleFonts.outfitTextTheme(ThemeData.light().textTheme).copyWith(
+      textTheme:
+          GoogleFonts.outfitTextTheme(ThemeData.light().textTheme).copyWith(
         bodyMedium: GoogleFonts.outfit(color: AppConstants.lightText),
-        bodyLarge: GoogleFonts.outfit(color: AppConstants.lightText, fontSize: 16),
-        titleLarge: GoogleFonts.outfit(color: AppConstants.lightText, fontWeight: FontWeight.bold),
+        bodyLarge:
+            GoogleFonts.outfit(color: AppConstants.lightText, fontSize: 16),
+        titleLarge: GoogleFonts.outfit(
+            color: AppConstants.lightText, fontWeight: FontWeight.bold),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppConstants.lightBg,
@@ -62,10 +65,13 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
         ),
       ),
-      textTheme: GoogleFonts.outfitTextTheme(ThemeData.dark().textTheme).copyWith(
+      textTheme:
+          GoogleFonts.outfitTextTheme(ThemeData.dark().textTheme).copyWith(
         bodyMedium: GoogleFonts.outfit(color: AppConstants.darkText),
-        bodyLarge: GoogleFonts.outfit(color: AppConstants.darkText, fontSize: 16),
-        titleLarge: GoogleFonts.outfit(color: AppConstants.darkText, fontWeight: FontWeight.bold),
+        bodyLarge:
+            GoogleFonts.outfit(color: AppConstants.darkText, fontSize: 16),
+        titleLarge: GoogleFonts.outfit(
+            color: AppConstants.darkText, fontWeight: FontWeight.bold),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppConstants.darkBg,

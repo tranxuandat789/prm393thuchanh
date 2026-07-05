@@ -35,56 +35,64 @@ const List<Movie> movieDatabase = [
     year: 2010,
     genres: ['Sci-Fi', 'Action'],
     rating: 8.8,
-    posterUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'The Dark Knight',
     year: 2008,
     genres: ['Action', 'Crime'],
     rating: 9.0,
-    posterUrl: 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'Interstellar',
     year: 2014,
     genres: ['Sci-Fi', 'Adventure'],
     rating: 8.7,
-    posterUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'The Matrix',
     year: 1999,
     genres: ['Action', 'Sci-Fi'],
     rating: 8.7,
-    posterUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'Avatar',
     year: 2009,
     genres: ['Sci-Fi', 'Adventure'],
     rating: 7.9,
-    posterUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'Spirited Away',
     year: 2001,
     genres: ['Anime', 'Adventure', 'Fantasy'],
     rating: 8.6,
-    posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'Parasite',
     year: 2019,
     genres: ['Thriller', 'Drama'],
     rating: 8.5,
-    posterUrl: 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
   Movie(
     title: 'Pulp Fiction',
     year: 1994,
     genres: ['Crime', 'Drama'],
     rating: 8.9,
-    posterUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    posterUrl:
+        'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
   ),
 ];
 
@@ -149,7 +157,8 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
   List<Movie> get _filteredAndSortedMovies {
     var movies = movieDatabase.where((movie) {
       // 1. Lọc theo từ khóa tìm kiếm (tiêu đề phim)
-      final matchesSearch = movie.title.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesSearch =
+          movie.title.toLowerCase().contains(_searchQuery.toLowerCase());
 
       // 2. Lọc theo thể loại đã chọn (nếu có chọn)
       final matchesGenres = _selectedGenres.isEmpty ||
@@ -195,14 +204,16 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     movie.title,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -211,9 +222,12 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                     children: [
                       const Icon(Icons.star, color: Colors.amber, size: 16),
                       const SizedBox(width: 4),
-                      Text(movie.rating.toString(), style: const TextStyle(fontWeight: FontWeight.bold)),
+                      Text(movie.rating.toString(),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                       const SizedBox(width: 12),
-                      Text('Năm: ${movie.year}', style: TextStyle(color: Colors.grey[500], fontSize: 13)),
+                      Text('Năm: ${movie.year}',
+                          style:
+                              TextStyle(color: Colors.grey[500], fontSize: 13)),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -221,16 +235,21 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                     spacing: 6,
                     children: movie.genres
                         .map((g) => Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
                                 g,
                                 style: TextStyle(
                                   fontSize: 10,
-                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer,
                                 ),
                               ),
                             ))
@@ -273,7 +292,8 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                 children: [
                   Text(
                     movie.title,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -285,7 +305,8 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                       const Icon(Icons.star, color: Colors.amber, size: 16),
                       Text(
                         movie.rating.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13),
                       ),
                       Text(
                         '•  ${movie.year}',
@@ -299,16 +320,21 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                     runSpacing: 4,
                     children: movie.genres
                         .map((g) => Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
                                 g,
                                 style: TextStyle(
                                   fontSize: 11,
-                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer,
                                 ),
                               ),
                             ))
@@ -378,10 +404,14 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                             value: _sortBy,
                             icon: const Icon(Icons.sort),
                             items: const [
-                              DropdownMenuItem(value: 'A-Z', child: Text('A-Z')),
-                              DropdownMenuItem(value: 'Z-A', child: Text('Z-A')),
-                              DropdownMenuItem(value: 'Year', child: Text('Năm')),
-                              DropdownMenuItem(value: 'Rating', child: Text('Đánh giá')),
+                              DropdownMenuItem(
+                                  value: 'A-Z', child: Text('A-Z')),
+                              DropdownMenuItem(
+                                  value: 'Z-A', child: Text('Z-A')),
+                              DropdownMenuItem(
+                                  value: 'Year', child: Text('Năm')),
+                              DropdownMenuItem(
+                                  value: 'Rating', child: Text('Đánh giá')),
                             ],
                             onChanged: (val) {
                               if (val != null) {
@@ -418,8 +448,10 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                             }
                           });
                         },
-                        selectedColor: Theme.of(context).colorScheme.primaryContainer,
-                        checkmarkColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                        selectedColor:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        checkmarkColor:
+                            Theme.of(context).colorScheme.onPrimaryContainer,
                       );
                     }).toList(),
                   ),
@@ -434,11 +466,13 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.movie_filter_outlined, size: 64, color: Colors.grey[400]),
+                          Icon(Icons.movie_filter_outlined,
+                              size: 64, color: Colors.grey[400]),
                           const SizedBox(height: 16),
                           Text(
                             'Không tìm thấy bộ phim nào phù hợp!',
-                            style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                            style: TextStyle(
+                                color: Colors.grey[600], fontSize: 16),
                           ),
                         ],
                       ),
@@ -457,7 +491,8 @@ class _MovieBrowserScreenState extends State<MovieBrowserScreen> {
                         } else {
                           return GridView.builder(
                             padding: const EdgeInsets.all(16),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 16,
                               mainAxisSpacing: 16,

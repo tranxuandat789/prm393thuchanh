@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:prm393_tranxuandat/lab9.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 9
 void main() {
   /// Test kiểm tra xem Lab 9 App có khởi tạo bình thường và hiển thị đủ 3 Tab điều hướng hay không
-  testWidgets('Lab 9 App khoi tao va hien thi 3 Tab tieu de', (WidgetTester tester) async {
+  testWidgets('Lab 9 App khoi tao va hien thi 3 Tab tieu de',
+      (WidgetTester tester) async {
     // 1. Build widget Lab9App
     await tester.pumpWidget(const Lab9App());
 

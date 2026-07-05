@@ -19,9 +19,12 @@ class BookDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bookProvider = Provider.of<BookProvider>(context);
     final currentChapterIndex = bookProvider.readingProgress[book.id] ?? 0;
-    
+
     // Check if any chapter of this book is bookmarked to display toggle state
-    final isAnyBookmarked = book.chapters.asMap().keys.any((index) => bookProvider.isBookmarked(book.id, index));
+    final isAnyBookmarked = book.chapters
+        .asMap()
+        .keys
+        .any((index) => bookProvider.isBookmarked(book.id, index));
 
     return Scaffold(
       body: CustomScrollView(
@@ -35,7 +38,8 @@ class BookDetailScreen extends StatelessWidget {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
             leading: CircleAvatar(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+              backgroundColor:
+                  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
               child: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
                 onPressed: () => Navigator.pop(context),
@@ -43,10 +47,13 @@ class BookDetailScreen extends StatelessWidget {
             ),
             actions: [
               CircleAvatar(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
+                backgroundColor:
+                    Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
                 child: IconButton(
                   icon: Icon(
-                    isAnyBookmarked ? Icons.bookmark_added_rounded : Icons.bookmark_add_outlined,
+                    isAnyBookmarked
+                        ? Icons.bookmark_added_rounded
+                        : Icons.bookmark_add_outlined,
                     color: isAnyBookmarked ? AppConstants.primaryColor : null,
                     size: 20,
                   ),
@@ -61,7 +68,8 @@ class BookDetailScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          bookProvider.isBookmarked(book.id, currentChapterIndex)
+                          bookProvider.isBookmarked(
+                                  book.id, currentChapterIndex)
                               ? 'Đã lưu dấu trang Chương ${currentChapterIndex + 1}!'
                               : 'Đã xóa dấu trang Chương ${currentChapterIndex + 1}!',
                         ),
@@ -88,7 +96,9 @@ class BookDetailScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   Container(
-                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.88),
+                    color: Theme.of(context)
+                        .scaffoldBackgroundColor
+                        .withOpacity(0.88),
                   ),
                   // Sharp Cover Image
                   Center(
@@ -108,7 +118,8 @@ class BookDetailScreen extends StatelessWidget {
                       child: Hero(
                         tag: 'cover_${book.id}',
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+                          borderRadius:
+                              BorderRadius.circular(AppConstants.radiusMedium),
                           child: Image.network(
                             book.coverUrl,
                             fit: BoxFit.cover,
@@ -121,7 +132,7 @@ class BookDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Book Information details
           SliverToBoxAdapter(
             child: Padding(
@@ -141,13 +152,19 @@ class BookDetailScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             letterSpacing: -0.5,
                           ),
-                        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0),
+                        )
+                            .animate()
+                            .fadeIn(duration: 400.ms)
+                            .slideY(begin: 0.1, end: 0),
                         const SizedBox(height: 8),
                         Text(
                           book.author,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .withOpacity(0.6),
                             fontWeight: FontWeight.w500,
                           ),
                         ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
@@ -155,24 +172,33 @@ class BookDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  
+
                   // Metadata Badges (Rating, Category, Total Chapters)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildMetaItem(context, Icons.star_rounded, Colors.amber, book.rating.toString(), 'Đánh giá'),
+                      _buildMetaItem(context, Icons.star_rounded, Colors.amber,
+                          book.rating.toString(), 'Đánh giá'),
                       _buildMetaDivider(context),
-                      _buildMetaItem(context, Icons.category_rounded, AppConstants.primaryColor, book.category, 'Thể loại'),
+                      _buildMetaItem(context, Icons.category_rounded,
+                          AppConstants.primaryColor, book.category, 'Thể loại'),
                       _buildMetaDivider(context),
-                      _buildMetaItem(context, Icons.menu_book_rounded, Colors.blueGrey, '${book.chapters.length} Ch.', 'Mục lục'),
+                      _buildMetaItem(
+                          context,
+                          Icons.menu_book_rounded,
+                          Colors.blueGrey,
+                          '${book.chapters.length} Ch.',
+                          'Mục lục'),
                     ],
                   ).animate().fadeIn(duration: 500.ms, delay: 200.ms),
                   const SizedBox(height: 24),
-                  
+
                   // Action buttons: "Read Now" and Continue reading progress
                   Center(
                     child: CustomButton(
-                      text: currentChapterIndex > 0 ? 'Đọc tiếp Chương ${currentChapterIndex + 1}' : 'Đọc Sách Ngay',
+                      text: currentChapterIndex > 0
+                          ? 'Đọc tiếp Chương ${currentChapterIndex + 1}'
+                          : 'Đọc Sách Ngay',
                       icon: Icons.play_arrow_rounded,
                       width: double.infinity,
                       onPressed: () {
@@ -189,7 +215,7 @@ class BookDetailScreen extends StatelessWidget {
                     ),
                   ).animate().fadeIn(duration: 500.ms, delay: 250.ms),
                   const SizedBox(height: 24),
-                  
+
                   // Book Description
                   const Text(
                     'Tóm tắt nội dung',
@@ -205,11 +231,14 @@ class BookDetailScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.6,
-                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.8),
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Chapters Section title
                   const Text(
                     'Mục lục chương',
@@ -220,14 +249,17 @@ class BookDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  
+
                   // Chapters List ListView
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: book.chapters.length,
                     separatorBuilder: (context, index) => Divider(
-                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.08),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.08),
                       height: 1,
                     ),
                     itemBuilder: (context, index) {
@@ -247,12 +279,15 @@ class BookDetailScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 4, vertical: 4),
                         leading: CircleAvatar(
                           radius: 16,
                           backgroundColor: isCurrent
                               ? AppConstants.primaryColor
-                              : (isRead ? AppConstants.primaryColor.withOpacity(0.1) : Colors.transparent),
+                              : (isRead
+                                  ? AppConstants.primaryColor.withOpacity(0.1)
+                                  : Colors.transparent),
                           child: Text(
                             '${index + 1}',
                             style: TextStyle(
@@ -260,7 +295,12 @@ class BookDetailScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: isCurrent
                                   ? Colors.white
-                                  : (isRead ? AppConstants.primaryColor : Theme.of(context).colorScheme.onBackground.withOpacity(0.5)),
+                                  : (isRead
+                                      ? AppConstants.primaryColor
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onBackground
+                                          .withOpacity(0.5)),
                             ),
                           ),
                         ),
@@ -268,18 +308,26 @@ class BookDetailScreen extends StatelessWidget {
                           chapter.title,
                           style: TextStyle(
                             fontSize: 15,
-                            fontWeight: isCurrent ? FontWeight.bold : FontWeight.w500,
+                            fontWeight:
+                                isCurrent ? FontWeight.bold : FontWeight.w500,
                             color: isCurrent
                                 ? AppConstants.primaryColor
-                                : Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.8),
                           ),
                         ),
                         trailing: Icon(
                           isCurrent
                               ? Icons.menu_book_rounded
-                              : (isRead ? Icons.check_circle_outline_rounded : Icons.arrow_forward_ios_rounded),
+                              : (isRead
+                                  ? Icons.check_circle_outline_rounded
+                                  : Icons.arrow_forward_ios_rounded),
                           size: 16,
-                          color: isCurrent || isRead ? AppConstants.primaryColor : Colors.grey,
+                          color: isCurrent || isRead
+                              ? AppConstants.primaryColor
+                              : Colors.grey,
                         ),
                       );
                     },
@@ -294,7 +342,8 @@ class BookDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMetaItem(BuildContext context, IconData icon, Color iconColor, String title, String subtitle) {
+  Widget _buildMetaItem(BuildContext context, IconData icon, Color iconColor,
+      String title, String subtitle) {
     return Column(
       children: [
         Row(

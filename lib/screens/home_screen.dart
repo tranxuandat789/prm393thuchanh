@@ -32,15 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // Filter books by category and search query
     final filteredBooks = books.where((book) {
-      final matchesCategory = _selectedCategory == 'All' || book.category == _selectedCategory;
-      final matchesSearch = book.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          book.author.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesCategory =
+          _selectedCategory == 'All' || book.category == _selectedCategory;
+      final matchesSearch =
+          book.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+              book.author.toLowerCase().contains(_searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     }).toList();
 
     // Books currently being read (progress > 0)
     final continueReadingBooks = books.where((book) {
-      final progress = bookProvider.getProgressPercentage(book.id, book.chapters.length);
+      final progress =
+          bookProvider.getProgressPercentage(book.id, book.chapters.length);
       return progress > 0.0 && progress < 1.0;
     }).toList();
 
@@ -60,7 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
           // Dark Mode Toggle Button
           IconButton(
             icon: Icon(
-              bookProvider.isDarkMode ? Icons.wb_sunny_rounded : Icons.nightlight_round,
+              bookProvider.isDarkMode
+                  ? Icons.wb_sunny_rounded
+                  : Icons.nightlight_round,
               size: 22,
             ),
             onPressed: () => bookProvider.toggleDarkMode(),
@@ -88,7 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardTheme.color,
-                    borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+                    borderRadius:
+                        BorderRadius.circular(AppConstants.radiusMedium),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.02),
@@ -107,12 +113,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: InputDecoration(
                       hintText: 'Tìm kiếm tựa sách hoặc tác giả...',
                       hintStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.4),
                         fontSize: 14,
                       ),
                       prefixIcon: Icon(
                         Icons.search_rounded,
-                        color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.5),
                       ),
                       suffixIcon: _searchQuery.isNotEmpty
                           ? IconButton(
@@ -135,7 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
               // "Continue Reading" section if there are books in progress
               if (continueReadingBooks.isNotEmpty && _searchQuery.isEmpty) ...[
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppConstants.paddingMedium),
                   child: Text(
                     'Đang đọc dở',
                     style: TextStyle(
@@ -152,7 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     physics: const BouncingScrollPhysics(),
                     itemCount: continueReadingBooks.length,
-                    padding: const EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppConstants.paddingMedium),
                     itemBuilder: (context, index) {
                       return BookCard(
                         book: continueReadingBooks[index],
@@ -166,7 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Horizontal Category Filter Selector
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppConstants.paddingMedium),
                 child: Text(
                   'Khám phá thể loại',
                   style: TextStyle(
@@ -189,7 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Books Grid
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppConstants.paddingMedium),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.paddingMedium),
                 child: filteredBooks.isEmpty
                     ? Center(
                         child: Padding(
@@ -200,13 +216,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(
                                 Icons.sentiment_dissatisfied_rounded,
                                 size: 60,
-                                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.3),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.3),
                               ),
                               const SizedBox(height: 12),
                               Text(
                                 'Không tìm thấy cuốn sách nào!',
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.5),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -218,7 +240,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: filteredBooks.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.65,
                           crossAxisSpacing: 16,
@@ -228,7 +251,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           return BookCard(book: filteredBooks[index])
                               .animate()
                               .fadeIn(delay: (index * 50).ms, duration: 400.ms)
-                              .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
+                              .scale(
+                                  begin: const Offset(0.95, 0.95),
+                                  end: const Offset(1, 1));
                         },
                       ),
               ),
