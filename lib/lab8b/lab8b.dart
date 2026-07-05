@@ -4,7 +4,7 @@
 // Thay đổi nội dung file main.dart thành:
 //
 // import 'package:flutter/material.dart';
-// import 'lab8b.dart';
+// import 'lab8b/lab8b.dart';
 // void main() {
 //   runApp(const Lab8BApp());
 // }
