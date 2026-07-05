@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prm393_tranxuandat/lab10.dart';
+import 'package:prm393_tranxuandat/lab10/lab10.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 10
 void main() {
