@@ -1,6 +1,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:prm393_tranxuandat/lab7.dart';
+import 'package:prm393_tranxuandat/lab7/lab7.dart';
 
 /// Hàm main chứa các bài test tự động cho ứng dụng Lab 7
 void main() {
