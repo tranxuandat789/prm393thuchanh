@@ -4,7 +4,7 @@
 // Thay đổi nội dung file main.dart thành:
 //
 // import 'package:flutter/material.dart';
-// import 'lab5.dart';
+// import 'lab5/lab5.dart';
 // void main() {
 //   runApp(const Lab5App());
 // }
